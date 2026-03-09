@@ -1,0 +1,18 @@
+# Fdb version 4
+["pdflatex"] 1773086100.79574 "/Users/cat4er/Documents/GitHub/AUA26Capstone/capstone.tex" "capstone.pdf" "capstone" 1773086101.00337 0
+  "/Users/cat4er/Documents/GitHub/AUA26Capstone/capstone.tex" 1773086100.70498 84 e241f15c35b8f8f9df1f55604062668b ""
+  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls" 1748806692 20144 b966087dda3b194755eb460d32e2ef75 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo" 1748806692 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1761248321 30662 bfd6e864f4ffc5018b0e2b6260c3181c ""
+  "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
+  "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1773083337 5541377 04880c840ca220163a28f1a3af0ee662 ""
+  "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1773083303 3636760 b41547e1da84d7ce4125b8c8b2ec180c ""
+  "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
+  "capstone.aux" 1773086100.99097 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "capstone.tex" 1773086100.70498 84 e241f15c35b8f8f9df1f55604062668b ""
+  (generated)
+  "capstone.aux"
+  "capstone.log"
+  "capstone.pdf"
+  (rewritten before read)
