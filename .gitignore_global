@@ -1,0 +1,10 @@
+# images
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.tiff
+*.svg
+*.ico
