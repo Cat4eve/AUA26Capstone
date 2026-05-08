@@ -1,0 +1,319 @@
+{
+  "version": 1,
+  "block_rows": 768,
+  "block_cols": 768,
+  "matrices": [
+    {
+      "original_file": "FFN1_01.csv",
+      "base": "FFN1_01",
+      "shape": [
+        768,
+        3072
+      ],
+      "blocks": [
+        {
+          "block_file": "FFN1_01__block_r0000_c0000__orig_768x3072.csv",
+          "block_stem": "FFN1_01__block_r0000_c0000__orig_768x3072",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_01__block_r0000_c0768__orig_768x3072.csv",
+          "block_stem": "FFN1_01__block_r0000_c0768__orig_768x3072",
+          "r0": 0,
+          "c0": 768,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_01__block_r0000_c1536__orig_768x3072.csv",
+          "block_stem": "FFN1_01__block_r0000_c1536__orig_768x3072",
+          "r0": 0,
+          "c0": 1536,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_01__block_r0000_c2304__orig_768x3072.csv",
+          "block_stem": "FFN1_01__block_r0000_c2304__orig_768x3072",
+          "r0": 0,
+          "c0": 2304,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "FFN1_02.csv",
+      "base": "FFN1_02",
+      "shape": [
+        768,
+        3072
+      ],
+      "blocks": [
+        {
+          "block_file": "FFN1_02__block_r0000_c0000__orig_768x3072.csv",
+          "block_stem": "FFN1_02__block_r0000_c0000__orig_768x3072",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_02__block_r0000_c0768__orig_768x3072.csv",
+          "block_stem": "FFN1_02__block_r0000_c0768__orig_768x3072",
+          "r0": 0,
+          "c0": 768,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_02__block_r0000_c1536__orig_768x3072.csv",
+          "block_stem": "FFN1_02__block_r0000_c1536__orig_768x3072",
+          "r0": 0,
+          "c0": 1536,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN1_02__block_r0000_c2304__orig_768x3072.csv",
+          "block_stem": "FFN1_02__block_r0000_c2304__orig_768x3072",
+          "r0": 0,
+          "c0": 2304,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "FFN2_01.csv",
+      "base": "FFN2_01",
+      "shape": [
+        3072,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "FFN2_01__block_r0000_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_01__block_r0000_c0000__orig_3072x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_01__block_r0768_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_01__block_r0768_c0000__orig_3072x768",
+          "r0": 768,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_01__block_r1536_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_01__block_r1536_c0000__orig_3072x768",
+          "r0": 1536,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_01__block_r2304_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_01__block_r2304_c0000__orig_3072x768",
+          "r0": 2304,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "FFN2_02.csv",
+      "base": "FFN2_02",
+      "shape": [
+        3072,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "FFN2_02__block_r0000_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_02__block_r0000_c0000__orig_3072x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_02__block_r0768_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_02__block_r0768_c0000__orig_3072x768",
+          "r0": 768,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_02__block_r1536_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_02__block_r1536_c0000__orig_3072x768",
+          "r0": 1536,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        },
+        {
+          "block_file": "FFN2_02__block_r2304_c0000__orig_3072x768.csv",
+          "block_stem": "FFN2_02__block_r2304_c0000__orig_3072x768",
+          "r0": 2304,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "K_01.csv",
+      "base": "K_01",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "K_01__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "K_01__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "K_02.csv",
+      "base": "K_02",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "K_02__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "K_02__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "Q_01.csv",
+      "base": "Q_01",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "Q_01__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "Q_01__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "Q_02.csv",
+      "base": "Q_02",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "Q_02__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "Q_02__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "V_01.csv",
+      "base": "V_01",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "V_01__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "V_01__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "V_02.csv",
+      "base": "V_02",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "V_02__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "V_02__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "attention_output_01.csv",
+      "base": "attention_output_01",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "attention_output_01__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "attention_output_01__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    },
+    {
+      "original_file": "attention_output_02.csv",
+      "base": "attention_output_02",
+      "shape": [
+        768,
+        768
+      ],
+      "blocks": [
+        {
+          "block_file": "attention_output_02__block_r0000_c0000__orig_768x768.csv",
+          "block_stem": "attention_output_02__block_r0000_c0000__orig_768x768",
+          "r0": 0,
+          "c0": 0,
+          "rows": 768,
+          "cols": 768
+        }
+      ]
+    }
+  ]
+}
