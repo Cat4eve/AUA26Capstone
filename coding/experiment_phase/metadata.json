@@ -1,0 +1,55 @@
+{
+  "version": "0.2-radial",
+  "pipeline": "CSV folder -> shelf-packed square -> plane VTP -> radially displaced hemisphere -> inline Gabor hologram",
+  "input_folder": "input",
+  "input_files": [
+    "input/bell_shape_matrix_256.csv"
+  ],
+  "side": 256,
+  "hologram_size": 150,
+  "hologram_size_rule": "ceil(side / (2*sqrt(pi))) when --holo-size auto",
+  "hemisphere_radius_matrix_units": 36.1081333470564,
+  "detector_half_width_matrix_units": 36.1081333470564,
+  "wavelength": 1.0,
+  "reference_amplitude": 1.0,
+  "object_strength": 0.02,
+  "pad_value": 0.0,
+  "value_min": 0.00573909,
+  "value_max": 99.98498287,
+  "value_height_scale": 0.15,
+  "radial_search_steps": 9,
+  "total_valid_values": 65536,
+  "encoded_values": 65536,
+  "encoded_coverage_percent": 100.0,
+  "hologram_png_min": 0.038679705957177686,
+  "hologram_png_max": 25.740916991983923,
+  "field_amplitude_png_min": 0.19667156875658892,
+  "field_amplitude_png_max": 5.073550728235988,
+  "field_phase_png_min": -3.141592653589793,
+  "field_phase_png_max": 3.141592653589793,
+  "placements": [
+    {
+      "name": "bell_shape_matrix_256",
+      "original_shape": [
+        256,
+        256
+      ],
+      "stored_shape": [
+        256,
+        256
+      ],
+      "row": 0,
+      "col": 0,
+      "size": 65536
+    }
+  ],
+  "notes": [
+    "Plane VTP uses x=row, y=column, z=value+1.",
+    "Hemisphere encoding uses base hemisphere coordinates from row/column and radial displacement from signed normalized values.",
+    "The hologram is generated from the displaced points themselves, not only from a visualized offset.",
+    "Decoding estimates values by radial search along each hemisphere normal.",
+    "Complex detector field is saved as separate amplitude and phase PNG files.",
+    "Decode step also saves reconstructed plane and hemisphere VTP files for inspection.",
+    "Complex-field decoding is preferred when amplitude and phase files are present; intensity-only decode remains available as fallback."
+  ]
+}

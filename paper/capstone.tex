@@ -24,128 +24,27 @@
     \begin{normalsize}
     
     	\section{Abstract}
-        Large Language Models (LLMs) have achieved strong performance across many natural language tasks, but their size makes them expensive to store, transfer, and deploy. Existing compression methods such as pruning, quantization, knowledge distillation, and low-rank factorization show that modern neural networks contain substantial redundancy. This capstone proposes a research-based investigation of a different idea inspired by holography. In classical holography, introduced by Dennis Gabor, information about an object is not stored as a direct image, but as an interference pattern from which the object can later be reconstructed approximately [1]. The central idea of this proposal is to ask whether an LLM can be viewed in an analogous way: not simply as a collection of separate weight matrices, but as a higher-dimensional structured object whose layered information may be encoded into a diffraction-like compressed representation. 
+        This capstone project investigates whether principles from optical holography can be adapted as an experimental compression method for large language model weight matrices. In classical holography, a three-dimensional object is not stored as a direct visual image, but as an interference pattern that contains information about the object wavefront, including both amplitude and phase. Inspired by this idea, the project treats neural network parameters as structured spatial data: weight matrices are converted into two-dimensional or three-dimensional geometric representations, encoded into a hologram-like image, and then decoded back into reconstructed matrices or point-cloud objects. The main research question is whether a compact two-dimensional holographic representation can preserve enough information to reconstruct model weights with acceptable numerical similarity.
 
-        This capstone will not implement or benchmark the method on real models at this stage. Instead, it will develop a theoretical and literature-based argument for why such an idea could be plausible. The proposal draws from four research areas: holography, phase retrieval, compressed sensing, and neural network compression. Holographic and phase-retrieval research shows that rich structure can be encoded indirectly and then reconstructed from lower-dimensional or intensity-only measurements [1], [4], [5]. Work on holographic reduced representations shows that complex structure can also be stored in compact distributed forms in computational settings [2]. Meanwhile, model compression research shows that deep networks and transformers are highly redundant and can often be represented more compactly through parameter sharing, factorization, or reduced-dimensional structure [6], [7], [8], [9], [10], [11]. The goal of this capstone is therefore to formulate a research framework that connects these literatures and evaluates whether a hologram-like encoding of LLMs is theoretically defensible as a future compression paradigm.
+        The proposed pipeline explores matrix normalization, matrix-to-surface mapping, VTP point-cloud generation, Gabor-style hologram encoding, amplitude and phase storage, and reconstruction quality measurement using metrics such as RMSE, MAE, relative error, cosine similarity, PSNR, and custom similarity scores. Unlike standard LLM compression methods such as pruning, quantization, and low-rank adaptation, this work does not begin by removing or simplifying parameters directly. Instead, it studies whether model weights can be re-represented through a physically inspired encoding process. The project is exploratory, and its value lies in testing the limits, weaknesses, and possible future potential of holographic representations for neural model compression.
 
-		\section{Introduction}
-        The scale of modern language models has created a major tension in artificial intelligence. On the one hand, larger models often achieve stronger performance. On the other hand, their growing number of parameters creates serious costs in memory, storage, energy use, and deployment. Because of this, compression has become one of the central themes in contemporary machine learning research [6], [7], [11].
+        \section{Introduction}
+        Large language models have become central to modern artificial intelligence, but their practical use is limited by the size of their parameter sets, memory requirements, and computational cost. Transformer-based models contain many large weight matrices, often repeated across attention and feed-forward layers. These matrices are usually stored directly as numerical arrays, which makes deployment expensive when the model has billions of parameters. For this reason, model compression has become an important research direction. Existing compression methods usually aim to reduce the number of stored bits, remove less important weights, approximate matrices with smaller structures, or transfer knowledge from a larger model to a smaller one.
 
-        Most current approaches to compression are based on reducing precision, removing parameters, sharing parameters, or factorizing matrices into smaller components [6], [7], [11]. These methods have already produced important results, but they usually treat the model as a collection of matrices that can be simplified locally. This proposal starts from a different intuition. An LLM is made of many layers, and each layer can itself be seen as a structured two-dimensional parameter object. If these layers are stacked, the model can be interpreted as a larger multi-layered structure rather than merely a list of separate matrices. This suggests a new question: can the entire structured object be encoded in a more global way?
+        This capstone approaches the problem from a different perspective. Instead of asking only how many parameters can be removed or how many bits each weight can use, it asks whether neural weights can be transformed into another representational domain. The main inspiration is holography. Dennis Gabor introduced holography in 1948 as a method for recording and reconstructing wavefront information rather than simply capturing an ordinary intensity image. In holography, the recorded pattern may look visually meaningless, but it can reconstruct the appearance of a three-dimensional object when interpreted through the proper optical or numerical process. This is important for the project because it suggests a broader idea: information does not always need to be stored in the same form in which it is later used. A complex object can be encoded into an indirect representation and reconstructed afterward.
 
-        The inspiration comes from holography. In holography, the stored pattern does not visually resemble the original object, yet it preserves enough information for reconstruction [1]. In the same spirit, this proposal imagines a compressed representation of an LLM that would not look like the original model parameters directly, but would instead behave like a diffraction image or holographic plate of the model. Such a representation would store information in transformed and distributed form.
+        The project applies this principle to model weights. A weight matrix can be interpreted as a surface, where the row and column indices define spatial coordinates and the weight value defines height, amplitude, depth, or phase. Multiple matrices can also be packed together into a larger spatial representation, or transformed onto curved surfaces such as hemispheres. After this conversion, the resulting object can be encoded into a hologram-like two-dimensional image. Decoding then attempts to reconstruct the original matrix or point cloud from the holographic representation.
 
-        This capstone is intentionally theoretical. Its purpose is not to prove experimentally that the method already works, but to investigate whether the idea is scientifically plausible based on existing research. The guiding research question is the following:
+        The research is not claiming that holographic encoding is already better than standard compression. Rather, it studies whether such an approach can preserve meaningful numerical structure while reducing storage size. Early experiments show that reconstruction can be very sensitive to hologram resolution, depth handling, angle selection, normalization, and whether only amplitude or both amplitude and phase are stored. A zero matrix reconstructs easily because it contains almost no structural variation, while more complex matrices expose the weakness of the current encoding and decoding process. This makes the project valuable as a research exploration: even failed or low-similarity reconstructions help identify what kind of information the holographic pipeline loses.
 
-        \textit{Can the layered parameter structure of a large language model be theoretically interpreted as an object that may be encoded into a compact hologram-like representation, such that approximate reconstruction of the model is conceivable in light of existing work on holography, inverse problems, and neural network redundancy?}
+        The main goal of the capstone is therefore to design, implement, and evaluate a hologram-inspired encoding-decoding pipeline for neural weight matrices. The project uses simple geometric objects such as cubes and hemispheres as controlled test cases, then applies similar methods to language model weight matrices. The success of the method is evaluated through reconstruction metrics, visual inspection, file-size comparison, and analysis of whether depth, phase, and matrix structure are preserved. The broader contribution of the work is to connect ideas from Fourier optics, digital holography, and neural model compression into one experimental framework.
 
-	   	\section{Background and Related Work}
-        The first body of research relevant to this idea is classical holography. Gabor's 1948 paper introduced holography as a method in which the information of an object is recorded through wave interference rather than through a direct image [1]. This is important for the present proposal because it provides the original conceptual move from object-space representation to transformed recording-space representation. Later work in phase retrieval expanded this idea mathematically by showing that signals can sometimes be recovered from magnitude or intensity information under suitable assumptions [5]. Related work in compressed sensing and compressive holography further showed that high-dimensional structure may, in some settings, be recovered from fewer measurements than naively expected, provided the signal is sparse, structured, or otherwise compressible [3], [4].
-
-        The second relevant area is distributed representation in computation. Plate's work on holographic reduced representations proposed fixed-width vector representations that can encode compositional structure through distributed binding and approximate recovery [2]. Although this framework is not an optical hologram, it is highly relevant because it demonstrates a computational analogue of holographic storage: information can be stored in a compressed and distributed form rather than assigned to one local slot. For this capstone, that idea is valuable because it suggests that a hologram-like representation of an LLM does not need to be physically optical in order to be theoretically meaningful.
-
-        The third area is neural network compression. Compression research has shown that large models are often overparameterized and contain significant redundancy [6], [7]. Standard surveys classify major compression methods into categories such as pruning, quantization, low-rank factorization, knowledge distillation, and parameter sharing [7], [11]. The fact that these methods work at all already indicates that the raw parameter count of a model is not always equal to the amount of truly essential information it carries.
-
-        The fourth area is transformer-specific evidence. Several works suggest that transformer parameters have exploitable structure across and within layers. ALBERT, for example, introduced parameter-reduction techniques that lowered memory consumption and improved scalability while preserving strong performance [10]. More recent work on tensor decomposition for transformer compression argues that self-attention and feed-forward layers are overparameterized and can be factorized effectively [9]. Related work on intrinsic dimension also suggests that many neural network problems can be solved in much smaller subspaces than the full parameter dimension might imply [8]. Taken together, these results do not prove that a holographic compression scheme for LLMs will work, but they do provide a reasonable theoretical basis for asking whether a more global, diffraction-like encoding might capture redundant structure across layers.
-
+	   	\section{Literature Review}
     	\section{Problem Formulation}
-        Let an LLM be represented as a collection of parameter tensors
-        \[
-        \mathcal{W} = \{W_1, W_2, \dots, W_L\},
-        \]
-        where each \(W_i\) represents a structured parameter block associated with layer \(i\). If the layers are interpreted as slices of a larger object, then the full model may be viewed as a stacked parameter volume.
-
-        The proposal asks whether there could exist a compressed representation
-        \[
-        H = \Phi(\mathcal{W}),
-        \]
-        where \(H\) is not a standard factorized weight set or pruned subnetwork, but rather a hologram-like encoding of the entire parameter structure. The reconstruction problem would then be expressed as
-        \[
-        \hat{\mathcal{W}} = \Psi(H),
-        \]
-        where \(\hat{\mathcal{W}}\) is an approximate recovery of the original model from the encoded representation.
-
-        To make the analogy more concrete, one may define a theoretical encoding of the form
-        \[
-        H = \left| \mathcal{F}(P(\mathcal{W}) + R) \right|^2,
-        \]
-        where \(P(\mathcal{W})\) is a projection of the model's parameter volume into a synthetic signal space, \(R\) is a reference pattern, and \(\mathcal{F}\) is a transform that produces an interference-like intensity map. This equation is not proposed here as a finished algorithm. Instead, it serves as a conceptual bridge to the literature on holography and phase retrieval [1], [4], [5].
-
-        The real research problem of this capstone is therefore not implementation, but theoretical feasibility. More specifically, the capstone asks four linked questions:
-        \begin{enumerate}
-            \item Is there enough evidence that LLM parameters contain strong global redundancy across layers, not only local redundancy within single matrices?
-            \item Do existing results in compressed sensing, holography, and phase retrieval make it reasonable to hypothesize that lower-dimensional indirect encodings can preserve reconstructable structure?
-            \item Can Plate-style distributed holographic representations be interpreted as a computational precedent for storing complex structure in compressed form [2]?
-            \item What assumptions would need to hold for a hologram-like LLM encoding to be mathematically and conceptually coherent?
-        \end{enumerate}
-
-        In this formulation, the capstone does not claim that such an encoding has already been achieved. Instead, it aims to construct a research argument for why the idea deserves serious future empirical study.
-
-    	\section{Methodology}
-        Because this project is purely research based, the methodology will rely on literature synthesis, conceptual modeling, and theoretical analysis rather than experiments on real models.
-
-        First, the project will conduct a focused review of foundational work in holography, phase retrieval, compressed sensing, distributed representations, and neural network compression [1]--[11]. The purpose of this review will be to identify which results are directly relevant to the proposed analogy and which are only loosely inspirational. This is important because the capstone should avoid using the language of holography only metaphorically; instead, it should clarify exactly what is being borrowed from the source literature.
-
-        Second, the capstone will develop a conceptual mapping between optical holography and LLM structure. In optical holography, an object is transformed into an interference pattern. In the proposed computational analogy, the stacked layers of an LLM play the role of the object, and the compressed encoding plays the role of the holographic plate. The study will analyze how far this analogy can be pushed before it becomes scientifically weak. In other words, it will distinguish between meaningful structural parallels and superficial metaphor.
-
-        Third, the capstone will formulate one or more candidate mathematical abstractions for holographic LLM encoding. These abstractions will not be implemented, but they will be specified clearly enough to be discussable as future research directions. For example, the work may compare three possible interpretations:
-        \begin{enumerate}
-            \item a diffraction-like encoding based on interference-style transforms;
-            \item a distributed fixed-width encoding inspired by holographic reduced representations;
-            \item a compressed inverse-problem view in which recovery from the encoding is treated analogously to phase retrieval or compressed sensing.
-        \end{enumerate}
-
-        Fourth, the project will evaluate plausibility by argument rather than by benchmark. The evaluation criteria will include:
-        \begin{enumerate}
-            \item \textbf{Redundancy plausibility:} whether current compression literature provides enough evidence that LLMs contain compressible cross-layer structure [6], [7], [8], [9], [10], [11];
-            \item \textbf{Recoverability plausibility:} whether the inverse-problem literature supports the idea that lower-dimensional transformed measurements can still preserve reconstructable information [3], [4], [5];
-            \item \textbf{Representation plausibility:} whether distributed holographic representations provide a computational precedent for storing complex structure in compact form [2];
-            \item \textbf{Conceptual consistency:} whether the proposed analogy avoids obvious scientific contradictions.
-        \end{enumerate}
-
-        Fifth, the main output of the capstone will be a theoretical research paper rather than an experimental system. The deliverables will include:
-        \begin{enumerate}
-            \item a structured review of the relevant literature;
-            \item a formal statement of the holographic-compression hypothesis for LLMs;
-            \item a comparison of supportive and limiting arguments from prior work;
-            \item a proposed roadmap for later empirical validation.
-        \end{enumerate}
-
-        This methodology makes the project appropriate for a research-oriented capstone. It creates a strong foundation for future implementation, while keeping the present work focused on scientific reasoning and literature-based justification.
-
-        \section{Future Work}
-        If the literature-based analysis supports the proposed direction, future work can move into empirical validation. The first step would be to design and test a simplified encoding framework on small transformer models. Later work could compare hologram-like encodings with standard baselines such as pruning, quantization, or low-rank factorization. Another promising direction would be to study whether different classes of weights, such as attention projections and feed-forward matrices, require different holographic treatment. A further extension would be to ask whether such encodings can support partial or dynamic reconstruction during inference. However, these steps belong to later stages. The present capstone is limited to building the theoretical case that such future work is worth pursuing.
-
-        \section{Conclusion}
-        This capstone proposes a research-based investigation into an unusual but potentially meaningful idea: the possibility of encoding a large language model into a diffraction-like, hologram-style compressed representation. The proposal does not claim that the method has already been demonstrated. Instead, it argues that the idea is worth examining because several established lines of research point in compatible directions. Holography shows that complex structure can be recorded indirectly [1]. Phase retrieval and compressed sensing show that transformed or incomplete measurements can still support reconstruction [3], [4], [5]. Holographic reduced representations show that compact distributed encoding of complex structure is computationally meaningful [2]. Neural network and transformer compression research shows that modern models contain significant redundancy and can often be represented much more compactly than their raw parameter count suggests [6]--[11].
-
-        For that reason, the proposed capstone is not a speculative statement without support. Rather, it is an attempt to synthesize several existing research traditions into a single hypothesis about LLM compression. Even if the final conclusion is cautious, the project can still make a valuable contribution by clarifying the assumptions, opportunities, and limits of a holographic view of model compression. In that sense, the capstone can serve as a serious research foundation for later algorithmic and experimental work.
-
+        \section{Proposed Methodology}
+        \section{Expected Results and Evaluation}
+        \section{Timeline}
         \section{References}
-        \begin{enumerate}
-            \item D. Gabor, ``A new microscopic principle,'' \textit{Nature}, vol. 161, no. 4098, pp. 777--778, 1948.
-            
-            \item T. A. Plate, ``Holographic reduced representations,'' \textit{IEEE Transactions on Neural Networks}, vol. 6, no. 3, pp. 623--641, 1995.
-            
-            \item D. L. Donoho, ``Compressed sensing,'' \textit{IEEE Transactions on Information Theory}, vol. 52, no. 4, pp. 1289--1306, 2006.
-            
-            \item D. J. Brady, K. Choi, D. L. Marks, R. Horisaki, and S. Lim, ``Compressive holography,'' \textit{Optics Express}, vol. 17, no. 15, pp. 13040--13049, 2009.
-            
-            \item E. J. Cand\`es, T. Strohmer, and V. Voroninski, ``PhaseLift: Exact and Stable Signal Recovery from Magnitude Measurements via Convex Programming,'' arXiv:1109.4499, 2011.
-            
-            \item S. Han, H. Mao, and W. J. Dally, ``Deep compression: Compressing deep neural networks with pruning, trained quantization and Huffman coding,'' in \textit{International Conference on Learning Representations (ICLR)}, 2016.
-            
-            \item Y. Cheng, D. Wang, P. Zhou, and T. Zhang, ``Model compression and acceleration for deep neural networks: The principles, progress, and challenges,'' \textit{IEEE Signal Processing Magazine}, vol. 35, no. 1, pp. 126--136, 2018.
-            
-            \item C. Li, H. Farkhoor, R. Liu, and J. Yosinski, ``Measuring the intrinsic dimension of objective landscapes,'' arXiv:1804.08838, 2018.
-            
-            \item J. Gu, B. Keller, J. Kossaifi, A. Anandkumar, B. Khailany, and D. Z. Pan, ``HEAT: Hardware-Efficient Automatic Tensor Decomposition for Transformer Compression,'' arXiv:2211.16749, 2022.
-            
-            \item Z. Lan, M. Chen, S. Goodman, K. Gimpel, P. Sharma, and R. Soricut, ``ALBERT: A Lite BERT for Self-supervised Learning of Language Representations,'' arXiv:1909.11942, 2019.
-            
-            \item X. Zhu, J. Li, Y. Liu, C. Ma, and W. Wang, ``A Survey on Model Compression for Large Language Models,'' arXiv:2308.07633, 2023.
-        \end{enumerate}
-
     \end{normalsize}
 
   

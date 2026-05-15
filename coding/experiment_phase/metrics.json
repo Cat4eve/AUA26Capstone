@@ -1,0 +1,24 @@
+{
+  "__packed_matrix__": {
+    "coverage_percent": 100.0,
+    "n_compared": 65536,
+    "similarity_percent": 0.0,
+    "relative_error": 1.1820421635883112,
+    "rmse": 33.390593619651014,
+    "mae": 23.790350350681152,
+    "max_abs_error": 99.79921397,
+    "cosine_similarity": 0.3568912162068281,
+    "psnr_db": 9.525714149866468
+  },
+  "bell_shape_matrix_256": {
+    "coverage_percent": 100.0,
+    "n_compared": 65536,
+    "similarity_percent": 0.0,
+    "relative_error": 1.1820421635883112,
+    "rmse": 33.390593619651014,
+    "mae": 23.790350350681152,
+    "max_abs_error": 99.79921397,
+    "cosine_similarity": 0.3568912162068281,
+    "psnr_db": 9.525714149866468
+  }
+}

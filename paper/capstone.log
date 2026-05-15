@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  2 MAY 2026 17:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.9)  15 MAY 2026 10:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -106,30 +106,25 @@ LaTeX Font Info:    ... okay on input line 5.
 
 [1
 
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 53.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 53.
- [2] [3] [4] [5] (./capstone.aux)
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] (./capstone.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1080 strings out of 467525
- 18463 string characters out of 5418983
- 445756 words of memory out of 5000000
- 30047 multiletter control sequences out of 15000+600000
- 629586 words of font info for 46 fonts, out of 8000000 for 9000
+ 1073 strings out of 467525
+ 18344 string characters out of 5418983
+ 444756 words of memory out of 5000000
+ 30041 multiletter control sequences out of 15000+600000
+ 629240 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,6n,65p,1226b,281s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on capstone.pdf (5 pages, 135434 bytes).
+ 57i,5n,65p,1001b,185s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb>
+Output written on capstone.pdf (2 pages, 66016 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 31 PDF objects out of 1000 (max. 8388607)
+ 18 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
