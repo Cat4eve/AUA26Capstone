@@ -1,0 +1,112 @@
+{
+  "files": {
+    "original_vtp": "cube_average.vtp",
+    "reconstructed_vtp": "experiment_cube_average_compressed_clean_v2/reconstructed.vtp",
+    "encoded_dir": "experiment_cube_average_compressed_clean_v2/encoded_hologram"
+  },
+  "point_counts": {
+    "original": 13256,
+    "reconstructed": 18000
+  },
+  "file_sizes_bytes": {
+    "original_vtp": 674302,
+    "reconstructed_vtp": 184661,
+    "encoded_dir_total": 384468
+  },
+  "compression": {
+    "compression_ratio_original_vtp_over_encoded": 1.7538572781089714,
+    "encoded_size_percent_of_original_vtp": 57.01718221212454
+  },
+  "geometry": {
+    "bbox_diagonal": 3.4641016151377544,
+    "estimated_original_spacing": 0.04255319149999992,
+    "original_to_reconstructed": {
+      "mean": 0.050290401280066614,
+      "mae": 0.050290401280066614,
+      "rmse": 0.05616600011456521,
+      "p50": 0.04668541207473491,
+      "p90": 0.082135539778774,
+      "p95": 0.09639865599261878,
+      "p99": 0.11802541284617703,
+      "max": 0.17049177757648726,
+      "rmse_percent_bbox_diag": 1.621372764272439,
+      "max_percent_bbox_diag": 4.921673683920137
+    },
+    "reconstructed_to_original": {
+      "mean": 0.08330708318207722,
+      "mae": 0.08330708318207722,
+      "rmse": 0.11989178221489184,
+      "p50": 0.054643901148099513,
+      "p90": 0.20175446487960944,
+      "p95": 0.24416255862346545,
+      "p99": 0.39438592944152423,
+      "max": 0.819432305972896,
+      "rmse_percent_bbox_diag": 3.4609776367695897,
+      "max_percent_bbox_diag": 23.654973121806364
+    },
+    "chamfer_l2_squared": 0.017528659011532395,
+    "hausdorff_max_symmetric": 0.819432305972896,
+    "hausdorff_95_symmetric": 0.24416255862346545,
+    "precision_recall_f1": {
+      "threshold_0.008660254038": {
+        "threshold": 0.008660254037844387,
+        "precision_reconstructed_to_original_percent": 0.0,
+        "recall_original_to_reconstructed_percent": 0.0,
+        "f1_percent": 0.0
+      },
+      "threshold_0.01732050808": {
+        "threshold": 0.017320508075688773,
+        "precision_reconstructed_to_original_percent": 0.37222222222222223,
+        "recall_original_to_reconstructed_percent": 0.5054315027157513,
+        "f1_percent": 0.4287176861554005
+      },
+      "threshold_0.03464101615": {
+        "threshold": 0.034641016151377546,
+        "precision_reconstructed_to_original_percent": 33.26111111111111,
+        "recall_original_to_reconstructed_percent": 23.4987929993965,
+        "f1_percent": 27.5404258402846
+      },
+      "threshold_0.0425531915": {
+        "threshold": 0.04255319149999992,
+        "precision_reconstructed_to_original_percent": 46.44444444444444,
+        "recall_original_to_reconstructed_percent": 43.39921544960772,
+        "f1_percent": 44.870221299009614
+      },
+      "threshold_0.0692820323": {
+        "threshold": 0.06928203230275509,
+        "precision_reconstructed_to_original_percent": 57.91666666666667,
+        "recall_original_to_reconstructed_percent": 76.63699456849729,
+        "f1_percent": 65.97455956249429
+      },
+      "threshold_0.085106383": {
+        "threshold": 0.08510638299999984,
+        "precision_reconstructed_to_original_percent": 69.45555555555556,
+        "recall_original_to_reconstructed_percent": 91.33977066988534,
+        "f1_percent": 78.9084442329547
+      },
+      "threshold_0.2127659575": {
+        "threshold": 0.2127659574999996,
+        "precision_reconstructed_to_original_percent": 92.20555555555555,
+        "recall_original_to_reconstructed_percent": 100.0,
+        "f1_percent": 95.94473509258816
+      },
+      "threshold_0.425531915": {
+        "threshold": 0.4255319149999992,
+        "precision_reconstructed_to_original_percent": 99.25555555555555,
+        "recall_original_to_reconstructed_percent": 100.0,
+        "f1_percent": 99.62638710751705
+      }
+    },
+    "voxel_iou": {
+      "voxel_iou_128": 1.4508747443928722,
+      "voxel_iou_256": 0.0
+    },
+    "cube_surface_metrics": {
+      "outside_original_bbox_percent": 37.8111111111111,
+      "distance_to_nearest_cube_face_mean": 0.07558556430446195,
+      "distance_to_nearest_cube_face_p95": 0.22401574803149638,
+      "distance_to_nearest_cube_face_p99": 0.3940944881889765,
+      "distance_to_nearest_cube_face_max": 0.8192913385826772
+    }
+  }
+}

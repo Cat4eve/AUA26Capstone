@@ -1,0 +1,179 @@
+{
+  "codec_name": "gabor_style_vtp_confidence_decoder",
+  "version": "2.0",
+  "original_file": "cube_average.vtp",
+  "original_point_count": 13256,
+  "original_bounds_min": [
+    -1.0,
+    -1.0,
+    -1.0
+  ],
+  "original_bounds_max": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "normalization_center": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "normalization_scale": 1.0,
+  "holo_size": 128,
+  "depth_bins": 64,
+  "views_mode": "cube6",
+  "wavelength": 0.05,
+  "pixel_pitch": 0.01,
+  "extent": 1.25,
+  "z_base": 0.35,
+  "z_span": 1.5,
+  "splat_sigma": 0.75,
+  "amplitude_bit_depth": 16,
+  "phase_bit_depth": 16,
+  "views": [
+    {
+      "name": "front_z",
+      "rotation_world_to_view": [
+        [
+          0.999999999999,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.999999999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.9999999999989999
+        ]
+      ],
+      "amplitude_png": "amplitude_front_z.png",
+      "phase_png": "phase_front_z.png",
+      "amp_log_min": 0.0027004811589966585,
+      "amp_log_max": 0.6860331394796928
+    },
+    {
+      "name": "back_z",
+      "rotation_world_to_view": [
+        [
+          -0.999999999999,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.999999999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          -0.9999999999989999
+        ]
+      ],
+      "amplitude_png": "amplitude_back_z.png",
+      "phase_png": "phase_back_z.png",
+      "amp_log_min": 0.0020903277060053908,
+      "amp_log_max": 0.5931471499902341
+    },
+    {
+      "name": "right_x",
+      "rotation_world_to_view": [
+        [
+          0.0,
+          0.999999999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.999999999999
+        ],
+        [
+          0.9999999999989999,
+          0.0,
+          0.0
+        ]
+      ],
+      "amplitude_png": "amplitude_right_x.png",
+      "phase_png": "phase_right_x.png",
+      "amp_log_min": 0.0010159522497818238,
+      "amp_log_max": 0.5726407325967205
+    },
+    {
+      "name": "left_x",
+      "rotation_world_to_view": [
+        [
+          0.0,
+          -0.999999999999,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.999999999999
+        ],
+        [
+          -0.9999999999989999,
+          0.0,
+          0.0
+        ]
+      ],
+      "amplitude_png": "amplitude_left_x.png",
+      "phase_png": "phase_left_x.png",
+      "amp_log_min": 0.0011734865695852289,
+      "amp_log_max": 0.5492171297279632
+    },
+    {
+      "name": "top_y",
+      "rotation_world_to_view": [
+        [
+          -0.999999999999,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          -0.0,
+          0.999999999999
+        ],
+        [
+          0.0,
+          0.9999999999989999,
+          0.0
+        ]
+      ],
+      "amplitude_png": "amplitude_top_y.png",
+      "phase_png": "phase_top_y.png",
+      "amp_log_min": 0.0017058440223409912,
+      "amp_log_max": 0.590057099053317
+    },
+    {
+      "name": "bottom_y",
+      "rotation_world_to_view": [
+        [
+          0.999999999999,
+          0.0,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.999999999999
+        ],
+        [
+          0.0,
+          -0.9999999999989999,
+          0.0
+        ]
+      ],
+      "amplitude_png": "amplitude_bottom_y.png",
+      "phase_png": "phase_bottom_y.png",
+      "amp_log_min": 0.004292354153031058,
+      "amp_log_max": 0.5844853342162404
+    }
+  ]
+}

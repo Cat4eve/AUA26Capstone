@@ -1,0 +1,106 @@
+{
+  "files": {
+    "original_vtp": "cube_one_bell_256.vtp",
+    "reconstructed_vtp": "experiment_cube_one_bell_256_sqrtpi144/reconstructed.vtp",
+    "encoded_dir": "experiment_cube_one_bell_256_sqrtpi144/encoded_hologram"
+  },
+  "point_counts": {
+    "original": 393216,
+    "reconstructed": 181036
+  },
+  "file_sizes_bytes": {
+    "original_vtp": 23961428,
+    "reconstructed_vtp": 1600555,
+    "encoded_dir_total": 486748
+  },
+  "compression": {
+    "compression_ratio_original_vtp_over_encoded": 49.22758388324143,
+    "encoded_size_percent_of_original_vtp": 2.0313814351966
+  },
+  "geometry": {
+    "bbox_diagonal": 3.741954462869787,
+    "estimated_original_spacing": 0.007843130000000031,
+    "original_to_reconstructed": {
+      "mean": 0.021340337276075438,
+      "mae": 0.021340337276075438,
+      "rmse": 0.024364866018674727,
+      "p50": 0.018530560058262972,
+      "p90": 0.038211449283152385,
+      "p95": 0.044290670785294396,
+      "p99": 0.056917286566303606,
+      "max": 0.08743028251719957,
+      "rmse_percent_bbox_diag": 0.6511267376564699,
+      "max_percent_bbox_diag": 2.336487078737654
+    },
+    "reconstructed_to_original": {
+      "mean": 0.12374737543931598,
+      "mae": 0.12374737543931598,
+      "rmse": 0.1814473228414055,
+      "p50": 0.08228312795591664,
+      "p90": 0.298701794195543,
+      "p95": 0.40458159321427734,
+      "p99": 0.6103848836721582,
+      "max": 0.9567116631880159,
+      "rmse_percent_bbox_diag": 4.848998688836249,
+      "max_percent_bbox_diag": 25.567164771275507
+    },
+    "chamfer_l2_squared": 0.033516777662421206,
+    "hausdorff_max_symmetric": 0.9567116631880159,
+    "hausdorff_95_symmetric": 0.40458159321427734,
+    "precision_recall_f1": {
+      "threshold_0.00784313": {
+        "threshold": 0.007843130000000031,
+        "precision_reconstructed_to_original_percent": 8.061380057005236,
+        "recall_original_to_reconstructed_percent": 8.154551188151043,
+        "f1_percent": 8.107697957984312
+      },
+      "threshold_0.009354886157": {
+        "threshold": 0.009354886157174468,
+        "precision_reconstructed_to_original_percent": 8.292273359994697,
+        "recall_original_to_reconstructed_percent": 13.286336263020834,
+        "f1_percent": 10.211402325732623
+      },
+      "threshold_0.01568626": {
+        "threshold": 0.015686260000000063,
+        "precision_reconstructed_to_original_percent": 16.038246536600457,
+        "recall_original_to_reconstructed_percent": 37.600453694661454,
+        "f1_percent": 22.485457091311712
+      },
+      "threshold_0.01870977231": {
+        "threshold": 0.018709772314348935,
+        "precision_reconstructed_to_original_percent": 16.401157780772884,
+        "recall_original_to_reconstructed_percent": 50.68232218424479,
+        "f1_percent": 24.782517641362688
+      },
+      "threshold_0.03741954463": {
+        "threshold": 0.03741954462869787,
+        "precision_reconstructed_to_original_percent": 31.24406195452838,
+        "recall_original_to_reconstructed_percent": 89.23924763997397,
+        "f1_percent": 46.283532406612416
+      },
+      "threshold_0.03921565": {
+        "threshold": 0.03921565000000016,
+        "precision_reconstructed_to_original_percent": 36.480589496011845,
+        "recall_original_to_reconstructed_percent": 90.95382690429688,
+        "f1_percent": 52.07461714206634
+      },
+      "threshold_0.07483908926": {
+        "threshold": 0.07483908925739574,
+        "precision_reconstructed_to_original_percent": 49.281358403853375,
+        "recall_original_to_reconstructed_percent": 99.95752970377603,
+        "f1_percent": 66.01553936718825
+      },
+      "threshold_0.0784313": {
+        "threshold": 0.07843130000000031,
+        "precision_reconstructed_to_original_percent": 49.495680417154595,
+        "recall_original_to_reconstructed_percent": 99.98601277669272,
+        "f1_percent": 66.21380356134611
+      }
+    },
+    "voxel_iou": {
+      "voxel_iou_128": 9.05288245236445,
+      "voxel_iou_192": 5.655787861396901,
+      "voxel_iou_256": 4.306902706206546
+    }
+  }
+}

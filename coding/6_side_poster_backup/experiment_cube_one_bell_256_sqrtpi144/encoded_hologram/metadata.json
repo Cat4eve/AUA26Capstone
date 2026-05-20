@@ -1,8 +1,8 @@
 {
   "codec_name": "gabor_style_vtp_confidence_decoder",
   "version": "2.0",
-  "original_file": "cube_dense_large_500.vtp",
-  "original_point_count": 1494008,
+  "original_file": "cube_one_bell_256.vtp",
+  "original_point_count": 393216,
   "original_bounds_min": [
     -1.0,
     -1.0,
@@ -11,16 +11,16 @@
   "original_bounds_max": [
     1.0,
     1.0,
-    1.0
+    1.44994351
   ],
   "normalization_center": [
     0.0,
     0.0,
-    0.0
+    0.224971755
   ],
-  "normalization_scale": 1.0,
-  "holo_size": 1024,
-  "depth_bins": 96,
+  "normalization_scale": 1.2249717549999999,
+  "holo_size": 144,
+  "depth_bins": 80,
   "views_mode": "cube6",
   "wavelength": 0.05,
   "pixel_pitch": 0.01,
@@ -52,8 +52,8 @@
       ],
       "amplitude_png": "amplitude_front_z.png",
       "phase_png": "phase_front_z.png",
-      "amp_log_min": 0.0005306810219503328,
-      "amp_log_max": 0.9292495960391677
+      "amp_log_min": 0.005926198041718023,
+      "amp_log_max": 1.650314221618117
     },
     {
       "name": "back_z",
@@ -76,8 +76,8 @@
       ],
       "amplitude_png": "amplitude_back_z.png",
       "phase_png": "phase_back_z.png",
-      "amp_log_min": 0.0001604804800160623,
-      "amp_log_max": 1.0135525197203816
+      "amp_log_min": 0.007298516217326076,
+      "amp_log_max": 1.6200839232143127
     },
     {
       "name": "right_x",
@@ -100,8 +100,8 @@
       ],
       "amplitude_png": "amplitude_right_x.png",
       "phase_png": "phase_right_x.png",
-      "amp_log_min": 0.00033592011398327244,
-      "amp_log_max": 1.038709423605768
+      "amp_log_min": 0.01261296037420411,
+      "amp_log_max": 1.63266473945968
     },
     {
       "name": "left_x",
@@ -124,8 +124,8 @@
       ],
       "amplitude_png": "amplitude_left_x.png",
       "phase_png": "phase_left_x.png",
-      "amp_log_min": 0.0002900924091796346,
-      "amp_log_max": 0.9478872255656994
+      "amp_log_min": 0.0033799366917262722,
+      "amp_log_max": 1.560827740325326
     },
     {
       "name": "top_y",
@@ -148,8 +148,8 @@
       ],
       "amplitude_png": "amplitude_top_y.png",
       "phase_png": "phase_top_y.png",
-      "amp_log_min": 0.00032499152758923126,
-      "amp_log_max": 0.9101275248087185
+      "amp_log_min": 0.015223825771214288,
+      "amp_log_max": 1.593012226831251
     },
     {
       "name": "bottom_y",
@@ -172,8 +172,8 @@
       ],
       "amplitude_png": "amplitude_bottom_y.png",
       "phase_png": "phase_bottom_y.png",
-      "amp_log_min": 0.000307116673147295,
-      "amp_log_max": 0.9736124584976826
+      "amp_log_min": 0.002897891322021714,
+      "amp_log_max": 1.6105976829461663
     }
   ]
 }

@@ -2,8 +2,8 @@ PWD /Users/cat4er/Documents/GitHub/AUA26Capstone/paper
 INPUT /usr/local/texlive/2026/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf
 INPUT /usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt
-INPUT /Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone.tex
-OUTPUT capstone.log
+INPUT /Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone_revised.tex
+OUTPUT capstone_revised.log
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo
@@ -47,6 +47,18 @@ INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-pdftex.def
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/xurl/xurl.sty
@@ -77,8 +89,6 @@ INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestri
 INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
-INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/stringenc/stringenc.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def
@@ -102,10 +112,10 @@ INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter
 INPUT /usr/local/texlive/2026/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-INPUT ./capstone.aux
-INPUT ./capstone.aux
-INPUT capstone.aux
-OUTPUT capstone.aux
+INPUT ./capstone_revised.aux
+INPUT ./capstone_revised.aux
+INPUT capstone_revised.aux
+OUTPUT capstone_revised.aux
 INPUT /usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 INPUT /usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -114,14 +124,17 @@ INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.st
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-INPUT ./capstone.out
-INPUT ./capstone.out
-INPUT capstone.out
-INPUT capstone.out
-OUTPUT capstone.pdf
-INPUT ./capstone.out
-INPUT ./capstone.out
-OUTPUT capstone.out
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+INPUT /usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+INPUT ./capstone_revised.out
+INPUT ./capstone_revised.out
+INPUT capstone_revised.out
+INPUT capstone_revised.out
+OUTPUT capstone_revised.pdf
+INPUT ./capstone_revised.out
+INPUT ./capstone_revised.out
+OUTPUT capstone_revised.out
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
@@ -161,9 +174,9 @@ INPUT ./ImageToStl.com_reconstructed (1).png
 INPUT ./ImageToStl.com_reconstructed (1).png
 INPUT ./ImageToStl.com_reconstructed (1).png
 INPUT ./ImageToStl.com_reconstructed (1).png
-INPUT capstone.aux
-INPUT ./capstone.out
-INPUT ./capstone.out
+INPUT capstone_revised.aux
+INPUT ./capstone_revised.out
+INPUT ./capstone_revised.out
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb

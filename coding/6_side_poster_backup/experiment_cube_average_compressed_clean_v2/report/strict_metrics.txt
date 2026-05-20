@@ -1,0 +1,45 @@
+========================================================================
+STRICT GABOR VTP CONFIDENCE-DECODER REPORT
+========================================================================
+Original:      cube_average.vtp
+Reconstructed: experiment_cube_average_compressed_clean_v2/reconstructed.vtp
+Encoded dir:   experiment_cube_average_compressed_clean_v2/encoded_hologram
+
+Original points:      13,256
+Reconstructed points: 18,000
+Original size:        674,302 bytes
+Encoded size:         384,468 bytes
+Compression ratio:    1.7539x
+Reconstructed size:   184,661 bytes
+
+BBox diagonal:        3.4641016151
+Estimated spacing:    0.0425531915
+
+NEAREST-NEIGHBOR DISTANCES
+O -> R RMSE:          0.0561660001
+R -> O RMSE:          0.1198917822
+O -> R p95:           0.0963986560
+R -> O p95:           0.2441625586
+Symmetric Hausdorff95:0.2441625586
+Symmetric HausdorffMax:0.8194323060
+
+PRECISION / RECALL / F1
+t=0.0086602540 | precision=0.00% | recall=0.00% | F1=0.00%
+t=0.0173205081 | precision=0.37% | recall=0.51% | F1=0.43%
+t=0.0346410162 | precision=33.26% | recall=23.50% | F1=27.54%
+t=0.0425531915 | precision=46.44% | recall=43.40% | F1=44.87%
+t=0.0692820323 | precision=57.92% | recall=76.64% | F1=65.97%
+t=0.0851063830 | precision=69.46% | recall=91.34% | F1=78.91%
+t=0.2127659575 | precision=92.21% | recall=100.00% | F1=95.94%
+t=0.4255319150 | precision=99.26% | recall=100.00% | F1=99.63%
+
+VOXEL IOU
+voxel_iou_128: 1.45%
+voxel_iou_256: 0.00%
+
+CUBE-SURFACE METRICS
+outside_original_bbox_percent: 37.81%
+distance_to_nearest_cube_face_mean: 0.0755855643
+distance_to_nearest_cube_face_p95: 0.2240157480
+distance_to_nearest_cube_face_p99: 0.3940944882
+distance_to_nearest_cube_face_max: 0.8192913386

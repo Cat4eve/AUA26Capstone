@@ -1,0 +1,39 @@
+========================================================================
+STRICT GABOR VTP CONFIDENCE-DECODER REPORT
+========================================================================
+Original:      cube_one_bell_256.vtp
+Reconstructed: experiment_cube_one_bell_256_sqrtpi144/reconstructed.vtp
+Encoded dir:   experiment_cube_one_bell_256_sqrtpi144/encoded_hologram
+
+Original points:      393,216
+Reconstructed points: 181,036
+Original size:        23,961,428 bytes
+Encoded size:         486,748 bytes
+Compression ratio:    49.2276x
+Reconstructed size:   1,600,555 bytes
+
+BBox diagonal:        3.7419544629
+Estimated spacing:    0.0078431300
+
+NEAREST-NEIGHBOR DISTANCES
+O -> R RMSE:          0.0243648660
+R -> O RMSE:          0.1814473228
+O -> R p95:           0.0442906708
+R -> O p95:           0.4045815932
+Symmetric Hausdorff95:0.4045815932
+Symmetric HausdorffMax:0.9567116632
+
+PRECISION / RECALL / F1
+t=0.0078431300 | precision=8.06% | recall=8.15% | F1=8.11%
+t=0.0093548862 | precision=8.29% | recall=13.29% | F1=10.21%
+t=0.0156862600 | precision=16.04% | recall=37.60% | F1=22.49%
+t=0.0187097723 | precision=16.40% | recall=50.68% | F1=24.78%
+t=0.0374195446 | precision=31.24% | recall=89.24% | F1=46.28%
+t=0.0392156500 | precision=36.48% | recall=90.95% | F1=52.07%
+t=0.0748390893 | precision=49.28% | recall=99.96% | F1=66.02%
+t=0.0784313000 | precision=49.50% | recall=99.99% | F1=66.21%
+
+VOXEL IOU
+voxel_iou_128: 9.05%
+voxel_iou_192: 5.66%
+voxel_iou_256: 4.31%

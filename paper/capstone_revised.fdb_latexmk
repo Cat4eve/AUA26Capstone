@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1779239452.98143 "/Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone.tex" "capstone.pdf" "capstone" 1779239454.62009 0
-  "/Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone.tex" 1779239451.1595 88025 688525f2a01d6a1de90344613f46b63a ""
+["pdflatex"] 1779240983.46393 "/Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone_revised.tex" "capstone_revised.pdf" "capstone_revised" 1779240985.17934 0
+  "/Users/cat4er/Documents/GitHub/AUA26Capstone/paper/capstone_revised.tex" 1779240981.52366 86348 4fcdab71e0e6c813d10631264708ac8c ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/tcrm1000.tfm" 1136768653 1536 e07581a4bb3136ece9eeb4c3ffab8233 ""
@@ -51,6 +51,7 @@
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/article.cls" 1748806692 20144 b966087dda3b194755eb460d32e2ef75 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/inputenc.sty" 1738182759 5048 0270515b828149155424600fd2d58ac5 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/base/size10.clo" 1748806692 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty" 1579038678 6078 f1cb470c9199e7110a27851508ed7a5c ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption.sty" 1696191071 56128 c2ccf1a29d78c33bc553880402e4fb9a ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/caption/caption3.sty" 1696191071 72619 ee90b6612147680fd73c3b1406a74245 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/caption/subcaption.sty" 1690576852 12494 0c0cdb824278a4d51cefeb2e79901315 ""
@@ -74,6 +75,10 @@
   "/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty" 1665067230 13815 760b0c02f691ea230f5359c4e1de23a7 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1761248321 30662 bfd6e864f4ffc5018b0e2b6260c3181c ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg" 1279039959 678 4792914a8f45be57bb98413425e4c7af ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype-pdftex.def" 1772383374 49656 1c61dbb6f95479ba3d6c0033b53590e2 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.cfg" 1772383374 27642 f0cea12315babf4d40608f4eeb5c8458 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/microtype.sty" 1772383374 102845 043c56602c7d94c8a716319df1af5479 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/microtype/mt-cmr.cfg" 1772226603 22906 2122f73c0e7dc828f24240c2422dfe25 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/refcount/refcount.sty" 1576624809 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1750533675 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty" 1388531844 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
@@ -86,12 +91,12 @@
   "ImageToStl.com_cube_average.png" 1779238741.78597 252816 3e16960c413e1be59f1fca86d95055c1 ""
   "ImageToStl.com_reconstructed (1).png" 1779238741.78097 253479 d7f8c73a0f690d942ccd089c8abd2512 ""
   "ImageToStl.com_reconstructed.png" 1779236894.40619 284378 fc627166b0db0630d917c37bb63f6b9b ""
-  "capstone.aux" 1779239454.52401 7333 25e45907a39a72366d056112fad43655 "pdflatex"
-  "capstone.out" 1779239454.52573 5430 c573865d1b5a3333e4fec2a6ed335439 "pdflatex"
-  "capstone.tex" 1779239451.1595 88025 688525f2a01d6a1de90344613f46b63a ""
+  "capstone_revised.aux" 1779240985.08435 8046 a796f9946b5bc8f5badc1b74d4c8daeb "pdflatex"
+  "capstone_revised.out" 1779240985.08562 5430 10129e0185da4b63b9b67b85e8aedc70 "pdflatex"
+  "capstone_revised.tex" 1779240981.52366 86348 4fcdab71e0e6c813d10631264708ac8c ""
   (generated)
-  "capstone.aux"
-  "capstone.log"
-  "capstone.out"
-  "capstone.pdf"
+  "capstone_revised.aux"
+  "capstone_revised.log"
+  "capstone_revised.out"
+  "capstone_revised.pdf"
   (rewritten before read)

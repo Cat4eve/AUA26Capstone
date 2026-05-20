@@ -4,6 +4,8 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{microtype}
 \usepackage{float}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
@@ -11,145 +13,131 @@
 \begin{document}
 	\begin{center}
     
-    	% MAKE SURE YOU TAKE OUT THE SQUARE BRACKETS
-    
-		\LARGE{\textbf{Capstone Proposal}} \\
+    	\LARGE{\textbf{Capstone Project Report}} \\
         \vspace{1em}
         \Large{Compressing LLMs with Holograms} \\
         \vspace{1em}
         \normalsize\textbf{Karapet Khachatryan} \\
-        \normalsize{karapet\_khachatryan\@edu.aua.am} \\ % add hyperlink
+        \normalsize{\href{mailto:karapet_khachatryan@edu.aua.am}{karapet\_khachatryan@edu.aua.am}} \\
         \vspace{1em}
         \normalsize{Supervisor: Suren Khachatryan} \\
         \vspace{1em}
         \normalsize{American University of Armenia, Yerevan, Armenia} \\
-        \normalsize{Bachelors of Computer Science}
+        \normalsize{Bachelor of Science in Computer Science}
     
 	\end{center}
 
     \begin{normalsize}
     
     	\section{Abstract}
-        This capstone project explores whether the holographical principle can be applied as an experimental compression for large language models, more particularly, for their weight matrices. In classical holography, a three-dimensional object is saved as an interference pattern that contains information about the amplitude and phase. Inspired by holography, this project treats neural network parameters as two-dimensional images, which are composed into a three-dimensional geometry. Next, the proposed geometry is encoded into the holographic diffraction image and then decoded back into the reconstructed matrices. The proposed pipeline includes matrix normalization, matrix-to-surface mapping, VTP point-cloud generation, holographic encoding, amplitude and phase separate storage, reconstruction quality measurement metrics such as RMSE, MAE, etc. The main research question is whether the holographic encoding can be used as a compression tool.
 
-        \section{Introduction}
-        Large language models have become central to modern artificial intelligence, but their practical use is limited by the size of their parameter sets, memory requirements, and computational cost. Transformer-based models contain many large weight matrices, often repeated across attention and feed-forward layers. These matrices are usually stored directly as numerical arrays, which makes deployment expensive when the model has billions of parameters. For this reason, model compression has become an alternative research direction. Existing compression methods usually aim to reduce the number of stored bits, remove less important weights, approximate matrices with smaller structures, or transfer knowledge from a larger model to a smaller one.
+This capstone project investigates whether holography-inspired encoding and decoding can be used as an exploratory compression mechanism for large language model (LLM) weight matrices. The central idea is to treat neural-network weights as spatial data: matrix indices define coordinates, while values define height, depth, intensity, or phase. The project first validates the idea on controlled VTP point-cloud objects, then connects the same pipeline to matrix-based representations of model weights. The implemented workflow includes normalization, matrix-to-geometry conversion, VTP point-cloud generation, multi-view hologram-like encoding, separate amplitude and phase storage, confidence-volume decoding, and reconstruction evaluation using file size, RMSE, MAE, F1 score, voxel IoU, and related metrics. The experiments show that the method can encode and reconstruct recognizable geometric structure and can achieve moderate compression in a cube experiment, but strict numerical accuracy is still limited, especially for matrix roundtrip reconstruction. The project therefore presents holographic encoding as a research direction rather than a finished replacement for established LLM compression methods. Future work should focus on learned decoders, such as U-Net-style models, to improve reconstruction from amplitude-and-phase hologram packages.
 
-        This capstone approaches the problem from a different perspective. Instead of asking only how many parameters can be removed or how many bits each weight can use, it asks whether neural weights can be transformed into another representational domain. The main inspiration is holography. Dennis Gabor introduced holography in 1948 as a method for recording and reconstructing wavefront information rather than simply capturing an ordinary intensity image. In holography, the recorded pattern may look visually meaningless, but it reconstructs the appearance of a theoretical virtual object with high precision. This is important for the project because it suggests a broader idea: information does not always need to be stored in the same form in which it is later used. A complex object can be encoded into an indirect representation and reconstructed afterward.
+\section{Introduction}
 
-        The project applies the holographic principle to model weights. A weight matrix can be interpreted as a surface, where the row and column indices define spatial coordinates and the weight value defines height, amplitude, depth, or phase. Multiple matrices can also be packed together into a larger spatial representation, or transformed onto curved surfaces such as hemispheres. After this conversion, the resulting object can be encoded into a hologram-like two-dimensional image. Decoding then attempts to reconstruct the original matrix or point cloud from the holographic representation.
+Large language models have become central to modern artificial intelligence, but their practical use is constrained by parameter size, memory requirements, storage cost, and inference cost. Transformer-based models rely heavily on repeated matrix operations, and architectures such as BERT show how stacked attention and feed-forward layers depend on many large weight matrices \cite{vaswani2017,devlin2019}. As models scale, storing and transferring these matrices becomes increasingly expensive. For this reason, model compression has become an important research area, with common approaches including quantization, pruning, knowledge distillation, and low-rank approximation \cite{zhu2024survey}.
 
-        The research is not claiming that holographic encoding is already better than standard compression. Rather, it studies whether such an approach can preserve meaningful numerical structure while reducing storage size. Early experiments show that rec	onstruction can be very sensitive to hologram resolution, depth handling, angle selection, normalization, and whether only amplitude or both amplitude and phase are stored. A zero matrix reconstructs easily because it contains almost no structural variation, while more complex matrices expose the weakness of the current encoding and decoding process. This makes the project valuable as a research exploration: even failed or low-similarity reconstructions help identify what kind of information the holographic pipeline loses.
+This capstone approaches the compression problem from a different direction. Instead of only asking how many parameters can be removed or how many bits should represent each weight, it asks whether neural weights can be transformed into another representational domain before storage. The inspiration is holography. Gabor's original holographic principle showed that information about a wavefront can be recorded indirectly through an interference pattern rather than through an ordinary intensity image \cite{gabor1948}. In physical and digital holography, the recorded pattern may not visually resemble the object, but it can still support reconstruction of object information under suitable optical or computational conditions \cite{goodman2005}. This suggests a broader representation idea: information does not always need to be stored in the same form in which it is later used.
 
-        The main goal of the capstone is therefore to design, implement, and evaluate a hologram-inspired encoding-decoding pipeline for neural weight matrices. The project uses simple geometric objects such as cubes and bell shapes as controlled test cases, then applies similar methods to language model weight matrices. The success of the method is evaluated through reconstruction metrics, visual inspection, file-size comparison, and analysis of whether depth, phase, and matrix structure are preserved.
-	   	\section{Literature Review}
-        Large Language Models are built mainly from large numerical weight matrices, especially inside Transformer architectures. The Transformer introduced self-attention as a replacement for recurrent and convolutional sequence models, making modern language models highly parallelizable but also heavily dependent on large-scale matrix operations. BERT later showed how stacked Transformer layers could produce powerful language representations, but also made clear that high performance depends on storing and processing many large parameter matrices. This creates the central motivation for model compression: reducing memory, storage, and inference cost while preserving as much model behavior as possible.
+The project applies this idea to model weights. A weight matrix can be interpreted as a surface in which row and column indices define spatial coordinates and the weight value defines height, depth, intensity, or phase. Multiple matrices can also be packed into a larger spatial representation, stacked into a volume, or mapped onto curved surfaces such as hemispheres. After this conversion, the resulting object can be encoded into a hologram-like two-dimensional representation and then decoded back into an approximate point cloud or matrix.
 
-        Most existing LLM compression research follows four major directions: quantization, pruning, knowledge distillation, and low-rank decomposition. A recent survey by Zhu et al. identifies these as the main families of LLM compression methods and emphasizes that compression is necessary because LLMs are difficult to deploy on resource-limited hardware. Quantization reduces the number of bits used to represent weights or activations. For example, GPTQ introduced a post-training quantization method that uses approximate second-order information and can reduce GPT-style model weights to 3 or 4 bits with limited accuracy loss. SmoothQuant focuses on activation outliers and enables 8-bit weight-and-activation quantization by shifting quantization difficulty from activations to weights. AWQ similarly argues that not all weights are equally important and protects a small percentage of salient weights based on activation statistics.
+The research does not claim that holographic encoding is currently better than standard compression methods. Its goal is narrower: to test whether a hologram-inspired representation can preserve meaningful numerical or geometric structure while reducing storage size. Early experiments show that reconstruction is sensitive to hologram resolution, depth handling, view selection, normalization, and whether amplitude and phase are both stored. Simple objects and low-variation matrices are easier to reconstruct, while complex matrices expose the current decoder's limitations. These limitations are valuable because they show what information the pipeline loses and what future decoders must recover.
 
-        Pruning removes less important parameters or structures from the model. SparseGPT, for instance, demonstrated that very large GPT-family models could be pruned to around 50% sparsity in one shot with minimal loss, showing that LLMs contain significant redundancy. Knowledge distillation takes a different approach: instead of preserving the exact original parameters, it trains a smaller model to imitate a larger one. DistilBERT is a classic example, reducing BERT’s size by 40% while retaining much of its language understanding performance. Low-rank methods are also relevant because weight matrices often contain compressible structure. LoRA, while mainly used for parameter-efficient fine-tuning, shows that large Transformer updates can be represented through low-rank matrices, reducing trainable parameters dramatically.
+The main goal of the capstone is therefore to design, implement, and evaluate a hologram-inspired encoding--decoding pipeline for neural weight matrices. The project uses simple geometric objects, such as cubes and bell-shaped surfaces, as controlled test cases before applying similar ideas to language-model matrices. Success is evaluated through reconstruction metrics, visual inspection, file-size comparison, and analysis of whether depth, phase, and matrix structure are preserved.
 
-        However, these methods compress LLMs mostly within the original neural-network framework. Quantization keeps the matrix layout but lowers precision; pruning deletes weights; distillation transfers behavior into a smaller model; and low-rank factorization approximates matrices with simpler components. The proposed capstone project explores a different question: whether LLM parameters can be treated as a spatial signal and encoded through a holography-inspired representation. In this view, each weight matrix is not only a table of numbers but also a two-dimensional surface or layer. A stack of such layers can be interpreted as a three-dimensional object, which can then be encoded into a two-dimensional hologram-like pattern and decoded back into an approximate reconstruction.
+\section{Literature Review}
 
-        The theoretical inspiration comes from holography. Dennis Gabor introduced holography in 1948 as a method for recording and reconstructing wavefront information. Unlike ordinary images, which store only intensity from one viewpoint, holograms encode information about a wavefield through interference. This is important for the capstone because the project is not simply image compression; it asks whether a lower-dimensional encoded representation can preserve enough information to reconstruct a higher-dimensional structure. In physical holography, a two-dimensional recording can reproduce the appearance of a three-dimensional object. In the capstone analogy, a two-dimensional hologram-like file is used to reconstruct a three-dimensional representation of model weights.
+Large language models are built mainly from numerical weight matrices, especially inside Transformer architectures. The Transformer introduced self-attention as a highly parallelizable replacement for recurrent sequence modeling, and BERT later demonstrated the effectiveness of stacked Transformer layers for language understanding \cite{vaswani2017,devlin2019}. These architectures motivate compression because high performance is often tied to storing and processing many large matrices.
 
-        Digital and computer-generated holography provide the closest technical foundation. Digital holograms are often complex-valued, containing amplitude and phase information, and their signal properties differ from natural images. This makes ordinary image compression difficult, because phase and high-frequency interference patterns may be essential for accurate reconstruction. JPEG Pleno Holography was introduced as the first international standard focused on efficient compression and representation of holographic content, showing that hologram compression is now recognized as a separate problem from ordinary image compression. Research on hologram compression also notes that raw holographic data can be extremely large, especially for holographic video, motivating specialized compression methods.
+Most existing LLM compression research follows several major directions: quantization, pruning, knowledge distillation, and low-rank decomposition \cite{zhu2024survey}. Quantization reduces the number of bits used to represent weights or activations. GPTQ is an example of post-training quantization that uses approximate second-order information for low-bit GPT-style models \cite{frantar2022gptq}. SmoothQuant addresses activation outliers by shifting part of the quantization difficulty from activations to weights, enabling efficient weight-and-activation quantization \cite{xiao2023smoothquant}. AWQ similarly argues that only a small fraction of weights are especially important and protects salient weight channels using activation-aware scaling \cite{lin2023awq}.
 
-        Recent work has also applied neural networks to hologram compression and reconstruction. Shi et al. proposed neural compression for complex-valued hologram images and videos, showing that learned compression can be applied directly to holographic data rather than treating it as an ordinary image. Other work on deep-learning-based computer-generated holography reviews data-driven, physics-driven, and jointly optimized methods, suggesting that neural networks can assist both hologram generation and reconstruction. This is relevant for the capstone because the current project may begin with algorithmic encoding and decoding, but future improvement could involve a learned decoder trained to reconstruct matrices or point clouds more accurately from hologram-like encodings.
+Pruning removes less important parameters or structures from the model. SparseGPT, for example, shows that large GPT-family models can be pruned in one shot while preserving much of their performance \cite{frantar2023sparsegpt}. Knowledge distillation trains a smaller model to imitate a larger model; DistilBERT is a classic example that reduces BERT's size while retaining much of its language understanding ability \cite{sanh2019}. Low-rank methods are relevant because weight matrices and model updates often contain lower-dimensional structure. LoRA, although mainly used for parameter-efficient fine-tuning, shows that Transformer updates can be represented through low-rank matrices with far fewer trainable parameters \cite{hu2021lora}.
 
-        Compressive holography is especially relevant because it studies reconstruction of three-dimensional information from fewer measurements. Brady et al. describe compressive holography as a method where compressed sensing enables reconstruction using fewer measurements than the number of reconstructed signal values. Later work applies compressive holography to three-dimensional reconstruction from two-dimensional holographic data, often relying on sparsity assumptions. This connects strongly to the capstone’s core hypothesis: if LLM weight structures contain redundancy, then a compressed holographic representation might preserve the most important information even when the encoded file is smaller than the original matrix or VTP representation.
+These methods compress models mostly inside the original neural-network representation. Quantization keeps the matrix layout but lowers precision; pruning removes weights; distillation transfers behavior into a smaller model; and low-rank factorization approximates matrices with simpler components. This capstone explores a different question: whether LLM parameters can be treated as spatial signals and encoded through a holography-inspired representation. In this view, each weight matrix is not only a table of values but also a surface or layer. A stack or packing of such layers can be interpreted as a three-dimensional object, encoded into a hologram-like pattern, and decoded back into an approximate reconstruction.
 
-        At the same time, the literature also shows why the problem is difficult. True three-dimensional reconstruction from holographic data is not simply an exact inverse operation. Birdi et al. explain that replay or back-propagation in digital holography is closer to a Hermitian transpose than a true inverse, meaning that naive reconstruction only approximates the original 3D object. This directly explains a major challenge in the capstone experiments: a decoded point cloud or matrix may visually resemble the original object while still having high numerical error. Therefore, evaluation must use strict metrics such as RMSE, MAE, cosine similarity, nearest-neighbor distances, voxel IoU, and downstream model-performance tests when possible.
+The theoretical basis comes from holography. Gabor introduced holography as a method for recording and reconstructing wavefront information \cite{gabor1948}. Unlike ordinary images, which store intensity from a viewpoint, holograms encode information about a wavefield through interference. Digital and computer-generated holography build on this idea computationally; in many cases the data is complex-valued and phase information is essential for reconstruction \cite{goodman2005}. This matters for the capstone because the project is not ordinary image compression. It asks whether a lower-dimensional encoded representation can preserve enough information to reconstruct a higher-dimensional structure.
 
-        Overall, the literature suggests that the capstone project is exploratory but well motivated. LLM compression research proves that model weights contain redundancy and can often be stored more efficiently. Holography and compressive imaging show that higher-dimensional spatial information can be encoded into lower-dimensional wave-like representations. Neural hologram compression further shows that learned methods can improve reconstruction quality when classical decoding is insufficient. The research gap is that these ideas are rarely applied directly to LLM weight matrices. Therefore, this capstone contributes by testing whether holography-inspired encoding can serve as an alternative compression framework for neural network parameters, beginning with simple 3D objects and moving toward real LLM weight matrices.
-    	
-        \section{Problem Formulation}
+Hologram compression is itself a specialized problem. JPEG Pleno Holography was developed because holographic data has signal properties that differ from ordinary natural images, including complex-valued information and high-frequency interference patterns \cite{jpegpleno2024}. Recent work also applies neural networks to hologram compression. Shi et al. proposed neural compression for complex-valued hologram images and videos, showing that learned methods can operate directly on holographic data rather than treating it as a normal image \cite{shi2022neural}. Reviews of deep learning for computer-generated holography also describe data-driven, physics-driven, and jointly optimized methods, suggesting that neural models can support both hologram generation and reconstruction \cite{shimobaba2022dlch}.
 
-        Large Language Models require a large amount of storage because their knowledge is represented through millions or billions of numerical parameters. These parameters are mainly stored as weight matrices inside Transformer layers. As models become larger, the cost of saving, transferring, and deploying them also increases. Existing compression methods such as quantization, pruning, knowledge distillation, and low-rank decomposition reduce model size, but they usually remain within the traditional structure of neural networks. This project formulates a different research problem: whether the parameters of a language model can be represented as a spatial object and compressed through a holography-inspired encoding process.
+Compressive holography is especially relevant because it studies reconstruction of three-dimensional information from fewer measurements. Brady et al. describe compressive holography as a way to reconstruct multidimensional images from lower-dimensional holographic data by using compressed-sensing assumptions \cite{brady2009}. This connects to the capstone hypothesis: if model-weight structures contain redundancy, a compressed holographic representation might preserve useful structure even when the encoded file is smaller than the original matrix or VTP representation.
 
-        The central idea of this capstone is based on the analogy between holography and neural network weight storage. In physical holography, information about a three-dimensional object can be encoded into a two-dimensional hologram pattern. Although the hologram is stored on a two-dimensional surface, it preserves enough information to reconstruct the visual structure of the original object. Similarly, an LLM can be viewed as a layered structure: each weight matrix is a two-dimensional surface, and a sequence of such matrices can be interpreted as a three-dimensional object. The problem is whether this three-dimensional representation of model parameters can be encoded into a smaller two-dimensional hologram-like representation and later reconstructed with acceptable accuracy.
+The literature also shows why the problem is difficult. Birdi et al. note that replay or back-propagation in digital holography is a Hermitian transpose rather than a true inverse of hologram formation, so naive reconstruction only approximates the original three-dimensional object \cite{birdi2020}. This directly explains a challenge in the capstone experiments: a decoded point cloud or matrix may visually resemble the original while still having high numerical error. For that reason, evaluation must include strict metrics such as RMSE, MAE, cosine similarity, nearest-neighbor distances, voxel IoU, compression ratio, and eventually downstream model-performance tests.
 
-        Formally, let a model contain a set of weight matrices:
+Overall, the literature supports the project as an exploratory but motivated direction. LLM compression research shows that neural models often contain redundancy; holography and compressive imaging show that spatial information can be encoded indirectly; and neural hologram compression suggests that learned decoders may improve reconstruction when classical decoding is insufficient. The research gap is that these ideas are rarely applied directly to LLM weight matrices. This capstone contributes by testing whether holography-inspired encoding can serve as an alternative compression framework for neural-network parameters, beginning with simple three-dimensional objects and moving toward matrix reconstruction.
 
-        \[
-        W = \{W_1, W_2, \ldots, W_n\},
-        \]
+\section{Problem Formulation}
 
-        where each \(W_i\) represents a matrix from one part of the model, such as an attention layer or feed-forward layer. These matrices can be transformed into a spatial representation \(P\), such as a point cloud or surface, where matrix indices define spatial coordinates and matrix values define height, depth, intensity, or density. The goal is to construct an encoding function:
+LLMs require large amounts of storage because their behavior is represented through millions or billions of numerical parameters. In Transformer models, many of these parameters are stored as weight matrices inside attention and feed-forward layers. Existing compression methods reduce size by changing precision, sparsity, architecture, or factorization, but they usually keep the model within the traditional matrix-storage framework. This project formulates a different research problem: whether model parameters can first be represented as a spatial object and then compressed through a holography-inspired encoding process.
 
-        \[
-        E(P) = H,
-        \]
+The central analogy is between holography and neural-weight storage. In holography, information about a three-dimensional object can be recorded on a two-dimensional hologram-like surface and later reconstructed under appropriate conditions. Similarly, an LLM can be viewed as a layered numerical structure: each weight matrix is a two-dimensional surface, and a sequence or grouping of matrices can be interpreted as a three-dimensional object. The problem is whether this spatial representation of model parameters can be encoded into a smaller hologram-like package and reconstructed with acceptable accuracy.
 
-        where \(H\) is a compact hologram-like representation, usually stored as an image or a small set of images with possible metadata. Then, a decoding function:
+Formally, let a model contain a set of weight matrices:
 
-        \[
-        D(H) = \hat{P}
-        \]
+\[
+W = \{W_1, W_2, \ldots, W_n\},
+\]
 
-        attempts to reconstruct the original spatial object. Finally, the reconstructed object \(\hat{P}\) can be converted back into approximate weight matrices:
+where each \(W_i\) represents a matrix from one part of the model, such as an attention layer or feed-forward layer. These matrices are transformed into a spatial representation \(P\), such as a point cloud, surface, or volume, where matrix indices define spatial coordinates and matrix values define height, depth, intensity, phase, or density. The encoder then constructs a hologram-like representation:
 
-        \[
-        \hat{W} = \{\hat{W}_1, \hat{W}_2, \ldots, \hat{W}_n\}.
-        \]
+\[
+E(P) = H,
+\]
 
-        The main research problem is to determine whether \(\hat{W}\) is close enough to \(W\) while the encoded representation \(H\) is significantly smaller than the original stored model parameters.
+where \(H\) is stored as one or more amplitude and phase images plus reconstruction metadata. A decoder then estimates the original spatial object:
 
-        Therefore, the project studies a compression--reconstruction trade-off. A successful method should reduce storage size while maintaining reconstruction quality. However, this is challenging because holographic encoding may lose numerical precision, depth information, or fine structural details. For ordinary images or three-dimensional objects, a visually similar reconstruction may be acceptable. For neural network weights, small numerical errors may still affect model behavior. Because of this, the evaluation cannot rely only on visual similarity. It must also include numerical metrics such as Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), cosine similarity, nearest-neighbor distance, voxel Intersection over Union (IoU), and compression ratio. In future extensions, the reconstructed model should also be tested by comparing its actual inference performance with the original model.
+\[
+D(H) = \hat{P},
+\]
 
-        This project begins with simple geometric objects, such as cubes and bell-shaped surfaces, because they allow easier visual and numerical evaluation of the holographic encoding and decoding pipeline. These experiments help test whether the method can preserve basic spatial structure under compression. After that, the same framework can be applied to matrices that resemble or come from real LLM layers. This step-by-step structure is important because directly applying the method to full LLMs would make it difficult to identify whether errors come from the holographic algorithm, the spatial conversion, the decoder, or the model itself.
+and the reconstructed object is mapped back into approximate matrices:
 
-        The problem can be summarized through the following research question:
+\[
+\hat{W} = \{\hat{W}_1, \hat{W}_2, \ldots, \hat{W}_n\}.
+\]
 
-        \begin{quote}
-        \textit{Can a holography-inspired two-dimensional encoding preserve enough information from three-dimensional representations of LLM weight matrices to provide meaningful compression with acceptable reconstruction accuracy?}
-        \end{quote}
+The main research problem is to determine whether \(\hat{W}\) remains sufficiently close to \(W\) while the encoded representation \(H\) is smaller than the original storage format. This creates a compression--reconstruction trade-off. A useful method must reduce file size while preserving numerical and structural information. This is difficult because holographic encoding may lose depth information, phase detail, high-frequency structure, or small numerical variations. For ordinary objects, a visually similar reconstruction may be acceptable; for neural weights, small numerical errors may affect model behavior. The evaluation therefore includes visual inspection, file-size comparison, RMSE, MAE, cosine similarity, nearest-neighbor distance, voxel IoU, F1 score, and, in future work, downstream model-performance tests.
 
-        From this main question, the project has several subproblems:
+The project begins with simple geometric objects, such as cubes and bell-shaped surfaces, because they provide controlled cases where reconstruction quality can be interpreted visually and numerically. After that, the framework is applied to matrix data that resembles or comes from real LLM layers. This staged structure separates the basic holographic reconstruction problem from the more difficult question of whether reconstructed neural-network weights preserve model behavior.
 
-        \begin{enumerate}
-            \item \textbf{Representation problem:} How should weight matrices be converted into a spatial object suitable for holographic encoding?
+The main research question is:
 
-            \item \textbf{Encoding problem:} What hologram-like encoding method can store the spatial representation compactly?
+\begin{quote}
+\textit{Can a holography-inspired two-dimensional encoding preserve enough information from spatial representations of LLM weight matrices to provide meaningful compression with acceptable reconstruction accuracy?}
+\end{quote}
 
-            \item \textbf{Decoding problem:} How accurately can the original object or matrix be reconstructed from the compressed hologram?
+The project addresses five subproblems:
 
-            \item \textbf{Evaluation problem:} Which metrics best measure whether the reconstruction is good enough for model-compression purposes?
+\begin{enumerate}
+    \item \textbf{Representation:} How should weight matrices be converted into spatial objects suitable for holographic encoding?
+    \item \textbf{Encoding:} What hologram-like encoding can store the spatial representation compactly?
+    \item \textbf{Decoding:} How accurately can the original object or matrix be reconstructed from the encoded package?
+    \item \textbf{Evaluation:} Which metrics best measure reconstruction quality for compression purposes?
+    \item \textbf{Trade-off:} How much file-size reduction is possible before reconstruction quality becomes unacceptable?
+\end{enumerate}
 
-            \item \textbf{Compression trade-off problem:} How much file-size reduction can be achieved before reconstruction quality becomes unacceptable?
-        \end{enumerate}
+The expected outcome is not to prove that holography is already a practical replacement for established LLM compression methods. Instead, the goal is to test whether this alternative representation has research potential. Strong reconstruction would suggest a new direction for neural-network storage; weak reconstruction still clarifies the limitations of applying holographic principles to LLM compression and identifies what improvements are needed, such as phase-aware encoding, multi-view holograms, better depth recovery, and learned decoders.
 
-        The expected outcome is not necessarily to prove that holography is already a practical replacement for existing LLM compression methods. Instead, the goal is to investigate whether this alternative representation has scientific potential. If the reconstructed matrices preserve structure well under compression, the project may suggest a new direction for neural network storage. If reconstruction quality remains weak, the project will still identify the limitations of applying holographic principles to LLM compression and clarify what improvements may be needed, such as phase-aware encoding, multi-view holograms, better depth recovery, or AI-assisted decoders.
-        
-        \section{Proposed Methodology}
+\section{Proposed Methodology}
 
-        The proposed methodology follows a step-by-step experimental structure. Instead of immediately applying the holographic compression idea to Large Language Model weight matrices, the project first focuses on reconstructing simple three-dimensional objects. This decision is important because simple objects, such as cubes and bell-shaped surfaces, provide a controlled environment where reconstruction quality can be visually and numerically evaluated. If the method cannot preserve the geometry of basic three-dimensional objects, then applying it directly to complex neural network parameters would not be meaningful.
+The methodology follows a staged experimental design. The project does not begin by compressing a full LLM directly. Instead, it first validates the holography-inspired encoding and decoding pipeline on controlled three-dimensional VTP point-cloud objects. This makes errors easier to diagnose: if the method cannot preserve the geometry of simple objects, then applying it to sensitive neural-network parameters would not be meaningful.
 
-        The first stage of the methodology is therefore the validation of a holography-inspired encoding and decoding pipeline on VTP point-cloud objects. A VTP file represents a three-dimensional object as a set of points in space. These points are read from the input file and normalized so that objects of different sizes can be processed within a common coordinate system. This normalization step allows the algorithm to apply the same holographic parameters, such as hologram size, depth range, and spatial extent, across different objects.
+The first stage is geometric validation. A VTP file represents a three-dimensional object as a set of spatial points. The pipeline reads these points, normalizes their coordinates into a common range, and processes them using consistent holographic parameters such as hologram size, depth range, spatial extent, wavelength, and pixel pitch. Normalization is required because input objects may have different scales and coordinate systems.
 
-        After normalization, the object is observed from one or more virtual viewpoints. The implementation supports a single view, six cube-like views, and circular multi-view configurations. In the main experiments, the six-view cube configuration is especially useful because it captures the object from the front, back, left, right, top, and bottom directions. This multi-view strategy is used because a single two-dimensional projection may lose important depth information. By encoding the object from several directions, the system increases the chance that the true three-dimensional structure can be recovered during decoding.
+After normalization, the object is encoded from one or more virtual viewpoints. The implementation supports single-view, six-view cube, and circular multi-view configurations. The six-view configuration is especially important for closed objects because it observes the object from front, back, left, right, top, and bottom directions. This reduces the depth ambiguity that would occur if the object were represented by only one projection.
 
-        For each view, the normalized point cloud is rotated into the corresponding view coordinate system. The depth dimension is then divided into several depth bins. Points belonging to each depth slice are projected onto a two-dimensional complex plane. To imitate holographic behavior, the projected points are assigned complex values with phase information, and each depth slice is propagated using an angular spectrum propagation method. The propagated slices are summed together to form a complex hologram field for that view. Thus, the encoded representation is not a normal image of the object, but a wave-based representation that combines spatial position, depth, amplitude, and phase.
+For each view, the point cloud is rotated into the view coordinate system and divided into depth bins. Points in each depth slice are projected onto a two-dimensional complex plane, assigned phase-aware values, and propagated using an angular-spectrum-style propagation step. The propagated slices are summed to form a complex hologram field. The encoded output for each view is stored as an amplitude image, a phase image, and metadata. The metadata contains information needed for reconstruction, including object bounds, normalization parameters, view rotations, depth-bin count, hologram size, and optical settings.
 
-        The encoded output for each view is stored as two image files: one for amplitude and one for phase. The amplitude is saved using a logarithmic scale, while the phase is mapped into a normalized image range. Alongside these image files, the pipeline stores a metadata file containing the original point count, object bounds, normalization parameters, hologram size, depth-bin count, wavelength, pixel pitch, view rotations, and other reconstruction parameters. Therefore, the compressed package consists of amplitude images, phase images, and metadata rather than a direct copy of the original VTP point cloud.
+The second stage is decoding. The decoder reconstructs the complex field from the stored amplitude and phase images. For each view and depth bin, the field is back-propagated to estimate where object evidence may exist. Instead of directly choosing the brightest pixels as final points, the newer decoder maps candidate evidence into a shared three-dimensional confidence volume. Voxels supported by multiple views are treated as more reliable than voxels supported by only one view. The decoder can then apply minimum view-support filtering, confidence thresholding, and connected-component filtering before converting the surviving voxels into a reconstructed VTP point cloud.
 
-        The second stage is decoding. The decoder reconstructs the complex hologram field from the stored amplitude and phase images. For each view and each depth bin, the field is back-propagated to estimate where strong object evidence may exist at that depth. Instead of directly converting the brightest pixels into reconstructed points, the method uses a confidence-volume approach. In this approach, candidate points from each back-propagated view are mapped into a shared three-dimensional voxel grid. Each view contributes votes to this grid, producing a confidence volume that represents how likely each spatial location is to belong to the original object.
+The third stage is evaluation. Reconstruction quality is measured visually and numerically. The reporting module compares the original and reconstructed VTP files using point counts, file sizes, compression ratio, nearest-neighbor RMSE in both directions, percentile errors, symmetric Hausdorff distance, precision, recall, F1 score under several thresholds, voxel Intersection over Union, and cube-surface metrics such as outside-bounding-box percentage. Matrix experiments are evaluated using numerical matrix similarity measures such as RMSE, MAE, and relative similarity.
 
-        This confidence-volume decoder is a key part of the methodology. Older decoding strategies may produce noisy points because they select bright peaks independently from each view. In contrast, the confidence-volume method requires evidence from multiple views before accepting a voxel as reliable. The decoder applies a minimum view-support condition, removes low-confidence voxels, and can also apply connected-component filtering to remove isolated noise. As a result, the final reconstructed object is produced only from the voxels that survive these confidence and consistency checks.
+The final stage connects the geometric pipeline to LLM weights. A weight matrix is interpreted as a spatial surface where row and column indices define coordinates and the weight value defines height, depth, intensity, phase, or density. Multiple matrices can be packed, stacked, or curved into a three-dimensional representation. The same holography-inspired encoder can then compress this representation into amplitude and phase images, and the decoder can attempt to reconstruct approximate matrices. This staged methodology keeps the project focused: simple objects test whether the encoding--decoding mechanism works at all, while matrix experiments test whether the mechanism has potential as a compression tool for neural-network parameters.
 
-        The reconstruction is then converted back into a VTP point cloud. Importantly, the method is quality-first rather than count-first. It does not automatically force the reconstructed point cloud to have the same number of points as the original object. If the decoder finds fewer reliable voxels, it outputs fewer points instead of inventing artificial points. This is useful for strict reconstruction testing because forcing the original point count could make the object look denser while also adding geometrically incorrect points.
+\section{Framework Design and Parameter Exploration}
 
-        The third stage is evaluation. Since the first experiments use simple three-dimensional objects, reconstruction quality can be evaluated both visually and numerically. The pipeline computes strict geometric metrics between the original and reconstructed VTP files. These include nearest-neighbor distance from original to reconstruction, nearest-neighbor distance from reconstruction to original, RMSE, percentile errors, symmetric Hausdorff distance, precision, recall, F1 score under several distance thresholds, voxel Intersection over Union, and compression ratio. For cube-like objects, additional surface metrics can also be used, such as the percentage of reconstructed points outside the original bounding box and the distance to the nearest cube face.
+After defining the general methodology, the project implements an experimental framework for testing holography-inspired compression and reconstruction. The framework is designed for repeated experiments rather than a single fixed run. Its purpose is to explore how encoding and decoding settings affect compression ratio, reconstruction accuracy, and geometric stability. Because this approach is experimental, there is no known optimal configuration for converting a three-dimensional object, or later a set of neural-network weight matrices, into a hologram-like representation.
 
-        This methodology supports the broader goal of the capstone project. Once the pipeline demonstrates that simple three-dimensional objects can be encoded, compressed, and reconstructed with measurable accuracy, the same idea can be extended to neural network weight matrices. In that later stage, a weight matrix can be interpreted as a two-dimensional surface where row and column indices define spatial coordinates and the weight value defines height, depth, or intensity. Multiple matrices from a model can then be stacked or packed into a three-dimensional representation. The holography-inspired encoder can compress this representation into amplitude and phase images, and the decoder can attempt to reconstruct the approximate original matrices.
-
-        Therefore, the proposed methodology is intentionally progressive. It begins with controlled three-dimensional shapes, where the success or failure of reconstruction is easier to interpret. Then it moves toward model-weight representations, where the same compression--reconstruction principle can be tested on data closer to the final capstone objective. This staged approach makes the research more reliable because it separates the basic geometric reconstruction problem from the more complex question of whether reconstructed neural network weights preserve model behavior.
-
-        \section{Framework Design and Parameter Exploration}
-
-After defining the general methodology, this project implements an experimental framework for testing holography-inspired compression and reconstruction. The purpose of the framework is not only to run one fixed experiment, but also to explore how different encoding and decoding settings affect compression ratio, reconstruction accuracy, and geometric stability. This is important because the proposed approach is experimental: there is no single known optimal configuration for converting a three-dimensional object, or later a set of neural network weight matrices, into a hologram-like representation.
-
-The framework is organized as a full pipeline that takes an input VTP point cloud, encodes it into a hologram package, decodes the package back into a reconstructed VTP point cloud, and then generates strict evaluation reports. Therefore, the implementation supports three main research activities: encoding, decoding, and quantitative comparison. In addition, an automated \texttt{run-all} mode connects all stages into one experiment, making it possible to repeatedly test different parameter configurations.
+The framework is organized as a full pipeline that takes an input VTP point cloud, encodes it into a hologram package, decodes the package back into a reconstructed VTP point cloud, and then generates strict evaluation reports. The implementation supports three main research activities: encoding, decoding, and quantitative comparison. In addition, an automated \texttt{run-all} mode connects all stages into one experiment, making it possible to repeatedly test different parameter configurations.
 
 \subsection{Framework Overview}
 
@@ -229,7 +217,7 @@ C(x,y,z),
 
 where higher values indicate stronger evidence that a voxel belongs to the original object.
 
-This design improves reconstruction because it does not trust a single view independently. A voxel is considered more reliable when it is supported by multiple views. The decoder can require a minimum number of supporting views, remove weak-confidence voxels, and apply connected-component filtering to remove isolated noise. Therefore, the reconstructed point cloud is extracted only from the surviving high-confidence regions.
+This design improves reconstruction because it does not trust a single view independently. A voxel is considered more reliable when it is supported by multiple views. The decoder can require a minimum number of supporting views, remove weak-confidence voxels, and apply connected-component filtering to remove isolated noise. The reconstructed point cloud is extracted only from the surviving high-confidence regions.
 
 The decoding parameters include:
 
@@ -259,7 +247,7 @@ The framework uses a quality-first reconstruction strategy. By default, it does 
 
 Instead, the decoder outputs points only from confident surviving voxels. If the confidence volume contains fewer reliable voxels, the reconstructed object will contain fewer points. This makes the evaluation more honest because the reconstruction reflects what the hologram package actually preserved. Exact point-count reconstruction is still supported through the \texttt{force-target-points} setting, but it is treated as an optional mode rather than the default.
 
-This distinction is important for the capstone project. In model compression, artificially reconstructing extra parameters without reliable information may lead to numerical noise. Therefore, the quality-first setting is more aligned with the long-term goal of preserving meaningful structure rather than simply matching the original file size or point count.
+This distinction is important for the capstone project. In model compression, artificially reconstructing extra parameters without reliable information may lead to numerical noise. The quality-first setting is more aligned with the long-term goal of preserving meaningful structure rather than simply matching the original file size or point count.
 
 \subsection{Automated Experiment Mode}
 
@@ -293,7 +281,7 @@ The large number of available parameters makes the framework suitable for system
 
 The first group is the storage-related encoding parameters. These include \texttt{holo-size}, \texttt{depth-bins}, and \texttt{views}. Reducing \texttt{holo-size} usually improves compression, because the amplitude and phase images become smaller. However, it may also reduce the spatial resolution of the encoded object. Reducing the number of views also decreases storage cost, but it may weaken depth reconstruction. Increasing \texttt{depth-bins} may improve depth representation, but it can make decoding more computationally expensive.
 
-The second group is the reconstruction-filtering parameters. These include \texttt{min-view-support}, \texttt{threshold-percentile}, \texttt{volume-confidence-percentile}, and \texttt{connected-filter}. These parameters control how strict the decoder is. A stricter decoder removes more noise, but it may also remove valid parts of the object. A more permissive decoder keeps more points, but it may introduce artifacts.
+The second group contains reconstruction filters such as minimum view support, threshold percentile, volume confidence percentile, and connected-component filtering. These parameters control how strict the decoder is. A stricter decoder removes more noise, but it may also remove valid parts of the object. A more permissive decoder keeps more points, but it may introduce artifacts.
 
 The third group is the output-control parameters. These include \texttt{force-target-points}, \texttt{max-output-points}, \texttt{min-output-points}, and \texttt{jitter-fraction}. These parameters affect the final reconstructed point cloud rather than the hologram itself. They are useful for testing whether visual quality, point-count matching, or strict numerical accuracy should be prioritized.
 
@@ -314,30 +302,26 @@ Although the current framework operates on VTP point clouds, it is designed as a
 A weight matrix can be represented as a surface where the row index corresponds to one spatial axis, the column index corresponds to another spatial axis, and the weight value corresponds to height, depth, density, or intensity. Multiple matrices can be stacked or packed together to form a three-dimensional object. The same encoding pipeline can then be applied:
 
 \[
+\begin{aligned}
 \textnormal{Weight matrices}
-\rightarrow
-\textnormal{3D spatial representation}
-\rightarrow
-\textnormal{Amplitude/phase hologram package}
-\rightarrow
-\textnormal{Reconstructed spatial representation}
-\rightarrow
-\textnormal{Approximate weight matrices}.
+&\rightarrow \textnormal{3D spatial representation}
+\rightarrow \textnormal{Amplitude/phase package} \\
+&\rightarrow \textnormal{Reconstructed representation}
+\rightarrow \textnormal{Approximate weight matrices}.
+\end{aligned}
 \]
 
-Therefore, the framework is not only a tool for reconstructing cubes or synthetic shapes. It is a testing environment for studying whether holographic principles can preserve structured numerical data under compression. The experiments with simple objects provide the necessary foundation before moving to more complex and sensitive data, such as LLM parameters.
-    \end{normalsize}
-
+Thus, the framework is not only a tool for reconstructing cubes or synthetic shapes. It is a testing environment for studying whether holographic principles can preserve structured numerical data under compression. The experiments with simple objects provide the necessary foundation before moving to more complex and sensitive data, such as LLM parameters.
 
 \section{Spatial Representation of Weight Matrices}
 
-Before applying the holography-inspired encoding process, the numerical data must be converted into a spatial format. This step is necessary because the implemented framework operates on VTP point-cloud objects rather than directly on raw matrix files. Therefore, one of the important methodological questions in this project is how a collection of weight matrices should be represented as a three-dimensional object.
+Before applying the holography-inspired encoding process, the numerical data must be converted into a spatial format. This step is necessary because the implemented framework operates on VTP point-cloud objects rather than directly on raw matrix files. One important methodological question in this project is how a collection of weight matrices should be represented as a three-dimensional object.
 
 This representation stage is important because the quality of reconstruction depends not only on the holographic encoder and decoder, but also on how the original numerical data is transformed into geometry. If the matrix-to-VTP conversion loses important numerical structure, then even a strong holographic decoder cannot fully recover the original information. For this reason, several representation strategies were considered during the project.
 
 \subsection{Normalization as a Common Preprocessing Step}
 
-Normalization is applied before converting matrices into spatial objects. Neural network weight matrices may contain very small, very large, positive, and negative values. If these values are used directly as spatial coordinates, the resulting object may become distorted or difficult to encode. Therefore, all matrix values are normalized into the interval \([-1,1]\).
+Normalization is applied before converting matrices into spatial objects. Neural network weight matrices may contain very small, very large, positive, and negative values. If these values are used directly as spatial coordinates, the resulting object may become distorted or difficult to encode. All matrix values are normalized into the interval \([-1,1]\).
 
 The normalization formula is:
 
@@ -426,15 +410,18 @@ z = r \cos(\theta).
 
 The motivation for this strategy is that holography is naturally related to wavefronts and spatial propagation. A curved representation may distribute information more evenly across a three-dimensional space than a flat surface. It may also reduce the dominance of one viewing direction, because the object is no longer simply a plane viewed from the front.
 
-However, the hemisphere representation is more complex than the flat matrix surface. After reconstruction, the object must be mapped back from curved coordinates into the original matrix structure. This inverse mapping may introduce interpolation errors. Therefore, the hemisphere approach is useful as an experimental representation, but it requires careful evaluation.
+However, the hemisphere representation is more complex than the flat matrix surface. After reconstruction, the object must be mapped back from curved coordinates into the original matrix structure. This inverse mapping may introduce interpolation errors. The hemisphere approach is useful as an experimental representation, but it requires careful evaluation.
 
 \subsection{Comparison of Representation Strategies}
 
 The different matrix-to-VTP strategies offer different advantages and disadvantages. The single large square matrix representation allows all selected matrices to be encoded together as one surface-like object, but it may introduce artificial padding and layout boundaries. The stacked representation better reflects the layered structure of neural networks, but it requires careful control of spacing between layers. The hemisphere representation is more physically inspired and may distribute information more naturally in three-dimensional space, but it is harder to invert back into exact matrix form.
 
-Overall, the project treats matrix-to-VTP conversion as an essential part of the compression problem. The holographic encoder does not operate on abstract model parameters directly; it operates on spatial objects. Therefore, the way matrices are transformed into geometry strongly affects the final reconstruction. By testing several representation strategies, the project investigates which spatial form is most suitable for holography-inspired model compression.
+Overall, the project treats matrix-to-VTP conversion as an essential part of the compression problem. The holographic encoder does not operate on abstract model parameters directly; it operates on spatial objects. Thus, the way matrices are transformed into geometry strongly affects the final reconstruction. By testing several representation strategies, the project investigates which spatial form is most suitable for holography-inspired model compression.
 
 \section{Testing and Results}
+
+This section reports the experimental evidence for the proposed compression idea. The goal is not only to show reconstructed images, but also to compare encoded size, original size, and reconstruction accuracy. For this reason, the results are interpreted cautiously: a reconstruction may look recognizable while still being weak under strict numerical metrics.
+
 
 For testing purposes, the project did not immediately use a full BERT model. Instead, a selected subset of BERT weight matrices was used in order to make the experiments computationally manageable while still preserving the real structure of Transformer-based neural networks. The tested subset contained matrices from two selected BERT Transformer layers, denoted as layer \(01\) and layer \(02\). For each layer, six matrices were considered: the query matrix \(Q\), key matrix \(K\), value matrix \(V\), attention output matrix, first feed-forward network matrix \(FFN1\), and second feed-forward network matrix \(FFN2\).
 
@@ -669,7 +656,7 @@ This experiment was applied to a cube object, \texttt{cube\_average.vtp}. Figure
     \label{fig:cube_confidence_reconstruction}
 \end{figure}
 
-The numerical results are summarized in Table~\ref{tab:cube_confidence_metrics}. The original file contained \(13{,}256\) points, while the reconstructed file contained \(18{,}000\) points. The encoded hologram package had a size of \(384{,}468\) bytes, compared with the original VTP size of \(674{,}302\) bytes. This gives a compression ratio of approximately \(1.75\times\). Therefore, the method achieved actual compression, although the compression level was moderate rather than extreme.
+The numerical results are summarized in Table~\ref{tab:cube_confidence_metrics}. The original file contained \(13{,}256\) points, while the reconstructed file contained \(18{,}000\) points. The encoded hologram package had a size of \(384{,}468\) bytes, compared with the original VTP size of \(674{,}302\) bytes. This gives a compression ratio of approximately \(1.75\times\). Thus, the method achieved actual compression, although the compression level was moderate rather than extreme.
 
 \begin{table}[H]
 \centering
@@ -717,29 +704,23 @@ However, the voxel IoU values are low, especially at high resolution. The voxel 
 
 The cube-surface metrics also show an important limitation. About \(37.81\%\) of reconstructed points were outside the original bounding box. This means that the decoder still produces a significant amount of off-surface or outside-region evidence. At the same time, the average distance to the nearest cube face was \(0.075586\), which suggests that many reconstructed points still remain close to the cube surface. Therefore, the reconstruction is not random, but it is also not clean enough to be considered a highly accurate cube recovery.
 
-Overall, this experiment is a meaningful improvement over the older simple-object reconstruction. The confidence-volume decoder reconstructs a recognizable cube-like object and achieves moderate compression. The result shows that multi-view amplitude-and-phase encoding combined with confidence-volume decoding is a better direction for three-dimensional reconstruction. At the same time, the strict metrics show that the method still has limitations: the reconstruction contains extra points, has low fine-scale voxel overlap, and places a noticeable fraction of points outside the original bounding box. Therefore, this experiment supports the feasibility of the approach, but also shows that further refinement is needed before applying the same idea to sensitive numerical data such as LLM weight matrices.
+Overall, this experiment is a meaningful improvement over the older simple-object reconstruction. The confidence-volume decoder reconstructs a recognizable cube-like object and achieves moderate compression. The result shows that multi-view amplitude-and-phase encoding combined with confidence-volume decoding is a better direction for three-dimensional reconstruction. At the same time, the strict metrics show that the method still has limitations: the reconstruction contains extra points, has low fine-scale voxel overlap, and places a noticeable fraction of points outside the original bounding box. This experiment supports the feasibility of the approach while also showing that further refinement is needed before applying the same idea to sensitive numerical data such as LLM weight matrices.
 
 \section{Future Work}
 
-The current project mainly focuses on designing and testing a holography-inspired encoding and decoding framework through algorithmic reconstruction. The experiments show that geometric and matrix-based information can be encoded into hologram-like representations and reconstructed to some extent. However, the reconstruction quality is still limited, especially when strict numerical accuracy is required. Therefore, the most important direction for future work is to replace or support the hand-designed decoder with deep learning models trained specifically for hologram reconstruction.
+The current project focuses on designing and testing a holography-inspired encoding and decoding framework through algorithmic reconstruction. The experiments show that geometric and matrix-based information can be encoded into hologram-like representations and reconstructed to some extent. However, strict numerical accuracy remains limited, especially for neural-network matrices. The most important future direction is therefore to support or replace the hand-designed decoder with deep learning models trained specifically for hologram reconstruction.
 
-A promising future direction is to train image-to-image or image-to-volume neural networks, such as U-Net, to reconstruct the original object or matrix representation from the encoded hologram. U-Net is especially suitable for this task because it is designed to preserve both global structure and local details through an encoder--decoder architecture with skip connections. In the context of this project, the encoded amplitude and phase images can be used as input channels, while the target output can be the original matrix, reconstructed depth map, point-cloud occupancy grid, or a voxelized representation of the original VTP object.
+A promising direction is to train image-to-image or image-to-volume neural networks, such as U-Net-style models, to reconstruct the original object or matrix representation from the encoded hologram \cite{ronneberger2015}. U-Net is relevant because its encoder--decoder structure with skip connections can preserve both global structure and local detail. In this project, the input could be a multi-channel hologram representation, with amplitude and phase stored as separate channels. The target output could be an original matrix, a reconstructed depth map, a point-cloud occupancy grid, or a voxelized version of the original VTP object.
 
-The future learned reconstruction pipeline can be described as:
-
-\[
-H_{\textnormal{amp}}, H_{\textnormal{phase}} \rightarrow \mathcal{N}_{\theta}(H) \rightarrow \hat{P},
-\]
-
-where \(H_{\textnormal{amp}}\) is the amplitude hologram, \(H_{\textnormal{phase}}\) is the phase hologram, \(\mathcal{N}_{\theta}\) is a trained neural network decoder, and \(\hat{P}\) is the reconstructed spatial representation. For matrix reconstruction, the output could instead be written as:
+The future learned-decoding pipeline can be written as:
 
 \[
-H_{\textnormal{amp}}, H_{\textnormal{phase}} \rightarrow \mathcal{N}_{\theta}(H) \rightarrow \hat{W},
+W \rightarrow P \rightarrow H \rightarrow \mathcal{N}_{\theta}(H) \rightarrow \hat{W},
 \]
 
-where \(\hat{W}\) is the reconstructed weight matrix or group of matrices.
+where \(W\) is the original matrix or group of matrices, \(P\) is the spatial representation, \(H\) is the encoded hologram package, \(\mathcal{N}_{\theta}\) is a trained neural decoder, and \(\hat{W}\) is the reconstructed matrix output.
 
-This approach would change the decoder from a manually designed reconstruction rule into a learned inverse mapping. The current decoder depends on fixed operations such as back-propagation, thresholding, confidence-volume voting, and connected-component filtering. These steps are useful, but they may not fully capture the complex relationship between the encoded hologram and the original object. A neural decoder could learn this relationship directly from many examples. For example, the training dataset could contain pairs of original objects and their encoded holograms:
+This approach would change the decoder from a fixed reconstruction rule into a learned inverse mapping. The current decoder relies on back-propagation, thresholding, confidence-volume voting, and connected-component filtering. These operations are useful, but they may not fully capture the relationship between the encoded hologram and the original object. A neural decoder could learn this relationship from many examples of original objects and their encoded holograms:
 
 \[
 (P_1,H_1), (P_2,H_2), \ldots, (P_n,H_n),
@@ -751,24 +732,24 @@ or, in the matrix case:
 (W_1,H_1), (W_2,H_2), \ldots, (W_n,H_n).
 \]
 
-The model would then learn to minimize the difference between the original data and the reconstructed output. Possible loss functions include Mean Squared Error (MSE), Mean Absolute Error (MAE), cosine similarity loss, structural similarity loss, Chamfer distance for point clouds, and voxel IoU-based losses for three-dimensional reconstructions. For LLM weight matrices, the loss function may also include matrix-level similarity measures such as relative Frobenius error:
+Possible loss functions include Mean Squared Error (MSE), Mean Absolute Error (MAE), cosine similarity loss, structural similarity loss, Chamfer distance for point clouds, and voxel IoU-based losses for three-dimensional reconstructions. For LLM weight matrices, the loss function should also include matrix-level similarity measures such as relative Frobenius error:
 
 \[
 \mathcal{L}_{F} =
 \frac{\lVert W - \hat{W} \rVert_F}{\lVert W \rVert_F}.
 \]
 
-In addition to numerical similarity, a future version of the project should evaluate whether reconstructed matrices preserve model behavior. This means that after reconstructing the weights, they should be inserted back into a model and tested on downstream tasks. This would answer a more important question: not only whether the reconstructed weights are numerically close, but whether they preserve the functional behavior of the original neural network.
+A future version of the project should also evaluate functional model behavior. Numerical similarity alone is not enough for LLM compression. After reconstructing weights, the reconstructed matrices should be inserted back into a model and tested on downstream tasks. This would answer the more important question: not only whether the weights are numerically close, but whether the reconstructed model behaves similarly to the original model.
 
-Several deep learning architectures could be explored. A standard two-dimensional U-Net could be used when the hologram is treated as a multi-channel image, where amplitude and phase are separate channels. A three-dimensional U-Net could be used if the target is a voxelized object or a multi-layer matrix volume. Autoencoders could be used to learn compact latent representations of holograms. Hybrid physics-informed networks could also be developed, where the model combines wave-propagation operations with learnable neural layers. This would allow the future system to benefit from both holographic principles and data-driven reconstruction.
+Several architectures could be explored. A two-dimensional U-Net could be used when the hologram is treated as a multi-channel image. A three-dimensional U-Net could be used if the target output is a voxelized object or a multi-layer matrix volume. Autoencoders could learn compact latent representations of hologram packages. Physics-informed neural networks could combine wave-propagation operations with learnable layers, allowing the system to use both holographic principles and data-driven reconstruction.
 
-Another important direction is training on synthetic data before moving to real model weights. A large dataset of simple geometric objects, surfaces, cubes, spheres, bell-shaped functions, and artificial matrix patterns could be generated automatically. The model could first learn general reconstruction behavior from these controlled examples. After that, it could be fine-tuned on actual neural network weight matrices, such as BERT attention and feed-forward layers. This staged training process would be similar to the current experimental structure of the project, where simple 3D objects are tested before moving to real LLM matrices.
+Training should begin with synthetic data before moving to real model weights. A large dataset of cubes, spheres, bell-shaped functions, surfaces, artificial matrix patterns, and random structured objects could be generated automatically. The model could first learn general reconstruction behavior from these controlled examples. After that, it could be fine-tuned on actual neural-network weight matrices, such as BERT attention and feed-forward layers.
 
-The main limitation of this future direction is computational resources. Training a neural reconstruction model requires a large dataset of encoded holograms and corresponding ground-truth objects or matrices. It also requires GPU resources, memory, and time for repeated training and evaluation. For small experiments, a U-Net could be trained on lower-resolution holograms and smaller matrix blocks. However, for realistic LLM-scale compression, the training process would require much larger datasets and stronger hardware. Therefore, the use of deep learning is not only a methodological question, but also a matter of available resources.
+The main limitation of this future direction is computational resources. Training a neural reconstruction model requires many encoded holograms with corresponding ground-truth objects or matrices. It also requires GPU memory, storage, and time for repeated training and evaluation. For small experiments, a U-Net could be trained on lower-resolution holograms and smaller matrix blocks. For realistic LLM-scale compression, however, the dataset and hardware requirements would be much larger. Thus, deep learning is not only a methodological improvement but also a resource-dependent extension.
 
-Future work should also explore block-based learning. Large matrices such as \(768 \times 3072\) or \(3072 \times 768\) can be split into smaller blocks, reconstructed independently, and then merged back together. This would reduce memory requirements and make neural decoding more practical. A learned decoder could be trained on fixed-size matrix blocks, such as \(768 \times 768\) or smaller patches, instead of trying to reconstruct the entire model at once.
+Future work should also explore block-based learning. Large matrices such as \(768 \times 3072\) or \(3072 \times 768\) can be split into smaller blocks, reconstructed independently, and then merged back together. This would reduce memory requirements and make neural decoding more practical. A learned decoder could be trained on fixed-size blocks, such as \(768 \times 768\) or smaller patches, instead of reconstructing an entire model at once.
 
-Another possible improvement is to train the model to predict correction terms rather than reconstructing the full matrix directly. In this approach, the current algorithmic decoder would first produce an approximate reconstruction \(\hat{W}_{0}\). Then, a neural network would learn the residual error:
+Another improvement is residual learning. The current algorithmic decoder could first produce an approximate reconstruction \(\hat{W}_{0}\). A neural network would then learn the residual error:
 
 \[
 R = W - \hat{W}_{0}.
@@ -780,11 +761,21 @@ The final reconstruction would be:
 \hat{W} = \hat{W}_{0} + \mathcal{N}_{\theta}(H).
 \]
 
-This residual-learning strategy may be easier than full reconstruction because the model only needs to correct the systematic errors of the holographic decoder.
+This residual strategy may be easier than full reconstruction because the model only needs to correct systematic decoder errors. Overall, the future direction is to move from purely algorithmic decoding toward learned hologram reconstruction. The current framework already generates encoded hologram packages, reconstructed outputs, and strict metrics, which makes it suitable for producing training data and evaluating future neural decoders.
 
-Overall, the future direction of this project is to move from purely algorithmic decoding toward learned hologram reconstruction. The current framework provides the foundation: it can generate encoded hologram packages, reconstructed outputs, and strict metrics. A future deep learning system could use this framework to generate training data and evaluate reconstruction quality. If sufficient computational resources are available, models such as U-Net could significantly improve reconstruction accuracy and make holography-inspired LLM compression more practical.
+\section{Conclusion}
 
-\section{References}
+This capstone project explored whether holography-inspired encoding and decoding can be used as a possible compression mechanism for large language model weight matrices. The main idea was to treat neural-network weights not only as numerical tables, but also as spatial structures that can be transformed into point clouds, surfaces, volumes, or hologram-like representations. In this sense, the project focused on holography as an alternative encoding domain: information is converted into amplitude-and-phase hologram packages and later decoded back into an approximate geometric or matrix representation.
+
+The implemented framework successfully demonstrates the full experimental pipeline: matrix or object normalization, VTP point-cloud construction, hologram-like encoding, amplitude and phase storage, confidence-volume decoding, reconstruction into VTP format, and strict evaluation through size and accuracy metrics. This shows that the project is not only theoretical, but also supported by a working prototype that can encode, decode, and measure reconstruction quality.
+
+The strongest result was obtained in the cube reconstruction experiment. The original cube file had \(13,256\) points and a size of \(674,302\) bytes, while the encoded hologram package had a size of \(384,468\) bytes. This produced a compression ratio of approximately \(1.7539\times\). The reconstruction preserved a recognizable cube-like structure, with an original-to-reconstructed RMSE of \(0.056166\) and an F1 score of \(78.91\%\) at two estimated point spacings. These results suggest that the method can preserve meaningful geometric information while reducing storage size.
+
+At the same time, the strict metrics show that the method is not yet accurate enough for reliable LLM compression. The voxel IoU remained low, and a significant fraction of reconstructed points appeared outside the original cube bounding box. The matrix reconstruction experiments also showed that visual or structural similarity does not automatically imply exact numerical recovery. This is especially important for LLM weights, where small numerical errors may affect model behavior. Therefore, the current system should be interpreted as an exploratory proof of concept rather than a practical replacement for existing compression methods such as quantization, pruning, distillation, or low-rank approximation.
+
+Overall, the project supports the possibility of using holography-inspired representations for compression research, but it also identifies the main limitation: decoding quality. The encoded hologram package can store compressed structural information, but the current algorithmic decoder cannot yet recover that information with sufficient numerical precision. Future work should therefore focus on learned reconstruction methods, especially U-Net-style neural decoders trained on pairs of original objects or matrices and their encoded holograms. Such models may be able to recover details that are lost by thresholding, back-propagation, and confidence-volume voting alone.
+
+The main contribution of this capstone is the design and evaluation of a complete holographic encoding--decoding framework for spatial representations of model weights. The experiments show both the promise and the difficulty of this direction: hologram-like encoding can reduce storage and preserve recognizable structure, but accurate reconstruction remains the central challenge. For this reason, holographic compression should be considered a future research direction for LLM compression, especially if combined with deep learning, better phase-aware encoding, block-based matrix reconstruction, and downstream model-performance evaluation.
 
 \begin{thebibliography}{99}
 
@@ -799,6 +790,22 @@ Goodman, J. W. (2005). \textit{Introduction to Fourier Optics} (3rd ed.). Robert
 Joint Photographic Experts Group. (2024). \textit{White Paper on JPEG Pleno Holography}. JPEG. 
 \url{https://ds.jpeg.org/whitepapers/wg1n101066-106-COM-White_Paper_on_JPEG_Pleno_Holography.pdf}
 
+\bibitem{brady2009}
+Brady, D. J., Choi, K., Marks, D. L., Horisaki, R., \& Lim, S. (2009). Compressive holography. \textit{Optics Express, 17}(15), 13040--13049. 
+\url{https://doi.org/10.1364/OE.17.013040}
+
+\bibitem{birdi2020}
+Birdi, J., Sunaina, Butola, M., \& Khare, K. (2020). True 3D reconstruction in digital holography. \textit{Journal of Physics: Photonics, 2}(4), 044004. 
+\url{https://doi.org/10.1088/2515-7647/aba5a3}
+
+\bibitem{shi2022neural}
+Shi, L., Webb, R., Xiao, L., Kim, C., \& Jang, C. (2022). Neural compression for hologram images and videos. \textit{Optics Letters, 47}(22), 6013--6016. 
+\url{https://doi.org/10.1364/OL.472769}
+
+\bibitem{shimobaba2022dlch}
+Shimobaba, T., Blinder, D., Birnbaum, T., Hoshi, I., Shiomi, H., Schelkens, P., \& Ito, T. (2022). Deep-learning computational holography: A review. \textit{Frontiers in Photonics, 3}, 854391. 
+\url{https://doi.org/10.3389/fphot.2022.854391}
+
 \bibitem{vaswani2017}
 Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, L., \& Polosukhin, I. (2017). Attention is all you need. In \textit{Advances in Neural Information Processing Systems}. 
 \url{https://arxiv.org/abs/1706.03762}
@@ -807,13 +814,9 @@ Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Ka
 Devlin, J., Chang, M.-W., Lee, K., \& Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. In \textit{Proceedings of NAACL-HLT 2019} (pp. 4171--4186). Association for Computational Linguistics. 
 \url{https://doi.org/10.18653/v1/N19-1423}
 
-\bibitem{ronneberger2015}
-Ronneberger, O., Fischer, P., \& Brox, T. (2015). U-Net: Convolutional networks for biomedical image segmentation. In \textit{Medical Image Computing and Computer-Assisted Intervention -- MICCAI 2015} (pp. 234--241). Springer. 
-\url{https://doi.org/10.1007/978-3-319-24574-4_28}
-
-\bibitem{sanh2019}
-Sanh, V., Debut, L., Chaumond, J., \& Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. \textit{arXiv preprint arXiv:1910.01108}. 
-\url{https://arxiv.org/abs/1910.01108}
+\bibitem{zhu2024survey}
+Zhu, X., Li, J., Liu, Y., Ma, C., \& Wang, W. (2024). A survey on model compression for large language models. \textit{Transactions of the Association for Computational Linguistics, 12}, 1556--1577. 
+\url{https://doi.org/10.1162/tacl_a_00704}
 
 \bibitem{frantar2022gptq}
 Frantar, E., Ashkboos, S., Hoefler, T., \& Alistarh, D. (2022). GPTQ: Accurate post-training quantization for generative pre-trained transformers. \textit{arXiv preprint arXiv:2210.17323}. 
@@ -823,9 +826,25 @@ Frantar, E., Ashkboos, S., Hoefler, T., \& Alistarh, D. (2022). GPTQ: Accurate p
 Xiao, G., Lin, J., Seznec, M., Wu, H., Demouth, J., \& Han, S. (2023). SmoothQuant: Accurate and efficient post-training quantization for large language models. In \textit{Proceedings of the 40th International Conference on Machine Learning}. 
 \url{https://arxiv.org/abs/2211.10438}
 
+\bibitem{lin2023awq}
+Lin, J., Tang, J., Tang, H., Yang, S., Chen, W.-M., Wang, W.-C., Xiao, G., Dang, X., Gan, C., \& Han, S. (2023). AWQ: Activation-aware weight quantization for LLM compression and acceleration. \textit{arXiv preprint arXiv:2306.00978}. 
+\url{https://arxiv.org/abs/2306.00978}
+
 \bibitem{frantar2023sparsegpt}
 Frantar, E., \& Alistarh, D. (2023). SparseGPT: Massive language models can be accurately pruned in one-shot. In \textit{Proceedings of the 40th International Conference on Machine Learning}. 
 \url{https://arxiv.org/abs/2301.00774}
+
+\bibitem{sanh2019}
+Sanh, V., Debut, L., Chaumond, J., \& Wolf, T. (2019). DistilBERT, a distilled version of BERT: Smaller, faster, cheaper and lighter. \textit{arXiv preprint arXiv:1910.01108}. 
+\url{https://arxiv.org/abs/1910.01108}
+
+\bibitem{hu2021lora}
+Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., \& Chen, W. (2021). LoRA: Low-rank adaptation of large language models. \textit{arXiv preprint arXiv:2106.09685}. 
+\url{https://arxiv.org/abs/2106.09685}
+
+\bibitem{ronneberger2015}
+Ronneberger, O., Fischer, P., \& Brox, T. (2015). U-Net: Convolutional networks for biomedical image segmentation. In \textit{Medical Image Computing and Computer-Assisted Intervention -- MICCAI 2015} (pp. 234--241). Springer. 
+\url{https://doi.org/10.1007/978-3-319-24574-4_28}
 
 \bibitem{python2009}
 Van Rossum, G., \& Drake, F. L. (2009). \textit{Python 3 Reference Manual}. CreateSpace.
@@ -835,7 +854,7 @@ Harris, C. R., Millman, K. J., van der Walt, S. J., Gommers, R., Virtanen, P., C
 \url{https://doi.org/10.1038/s41586-020-2649-2}
 
 \bibitem{scipy2020}
-Virtanen, P., Gommers, R., Oliphant, T. E., Haberland, M., Reddy, T., Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., van der Walt, S. J., Brett, M., Wilson, J., Millman, K. J., Mayorov, N., Nelson, A. R. J., Jones, E., Kern, R., Larson, E., Carey, C. J., Polat,\.I., Feng, Y., Moore, E. W., VanderPlas, J., Laxalde, D., Perktold, J., Cimrman, R., Henriksen, I., Quintero, E. A., Harris, C. R., Archibald, A. M., Ribeiro, A. H., Pedregosa, F., van Mulbregt, P., \& SciPy 1.0 Contributors. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. \textit{Nature Methods, 17}, 261--272. 
+Virtanen, P., Gommers, R., Oliphant, T. E., Haberland, M., Reddy, T., Cournapeau, D., Burovski, E., Peterson, P., Weckesser, W., Bright, J., van der Walt, S. J., Brett, M., Wilson, J., Millman, K. J., Mayorov, N., Nelson, A. R. J., Jones, E., Kern, R., Larson, E., Carey, C. J., Polat, \.I., Feng, Y., Moore, E. W., VanderPlas, J., Laxalde, D., Perktold, J., Cimrman, R., Henriksen, I., Quintero, E. A., Harris, C. R., Archibald, A. M., Ribeiro, A. H., Pedregosa, F., van Mulbregt, P., \& SciPy 1.0 Contributors. (2020). SciPy 1.0: Fundamental algorithms for scientific computing in Python. \textit{Nature Methods, 17}, 261--272. 
 \url{https://doi.org/10.1038/s41592-019-0686-2}
 
 \bibitem{pandas2010}
@@ -854,5 +873,7 @@ Pillow Contributors. (n.d.). \textit{Pillow: The Friendly PIL Fork}. Pillow docu
 \url{https://pillow.readthedocs.io/}
 
 \end{thebibliography}
+
+\end{normalsize}
 
 \end{document}

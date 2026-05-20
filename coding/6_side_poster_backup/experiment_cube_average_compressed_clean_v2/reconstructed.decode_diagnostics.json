@@ -1,0 +1,12 @@
+{
+  "reference_target_points": 13256,
+  "output_points": 18000,
+  "force_target_points": false,
+  "volume_resolution": 128,
+  "top_k_per_slice": 160,
+  "min_view_support": 1,
+  "support_radius": 2,
+  "volume_confidence_percentile": 3.0,
+  "surviving_confident_voxels": 54239,
+  "connected_filter": false
+}

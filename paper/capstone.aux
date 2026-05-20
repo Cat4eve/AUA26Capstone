@@ -1,10 +1,70 @@
 \relax 
-\@writefile{toc}{\contentsline {section}{\numberline {1}Abstract}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{1}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {3}Literature Review}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4}Problem Formulation}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {5}Proposed Methodology}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {6}Expected Results and Evaluation}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Timeline}{2}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {8}References}{2}{}\protected@file@percent }
-\gdef \@abspage@last{2}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Abstract}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Introduction}{1}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Literature Review}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Problem Formulation}{3}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Proposed Methodology}{4}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Framework Design and Parameter Exploration}{6}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Framework Overview}{6}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Encoding Module}{6}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}View Configuration}{7}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Decoding Module}{7}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Quality-First Reconstruction}{8}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Automated Experiment Mode}{8}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Evaluation and Reporting Capability}{9}{subsection.6.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Parameter Exploration Strategy}{9}{subsection.6.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.9}Connection to LLM Weight Compression}{9}{subsection.6.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Spatial Representation of Weight Matrices}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Normalization as a Common Preprocessing Step}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Single Large Square Matrix Representation}{10}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Stacked Matrix Representation}{11}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Hemisphere-Based Representation}{11}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Comparison of Representation Strategies}{12}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Testing and Results}{12}{section.8}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Selected BERT weight matrices used for testing the matrix-to-VTP and holographic encoding pipeline.}}{12}{table.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tab:bert_test_matrices}{{1}{12}{Selected BERT weight matrices used for testing the matrix-to-VTP and holographic encoding pipeline}{table.caption.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Preliminary Reconstruction on Simple Three-Dimensional Objects}{12}{subsection.8.1}\protected@file@percent }
+\newlabel{fig:allobj_original}{{1a}{13}{Original VTP scene containing multiple simple objects}{figure.caption.2}{}}
+\newlabel{sub@fig:allobj_original}{{a}{13}{Original VTP scene containing multiple simple objects}{figure.caption.2}{}}
+\newlabel{fig:allobj_reconstructed}{{1b}{13}{Reconstructed output from the older phase-depth FFT pipeline}{figure.caption.2}{}}
+\newlabel{sub@fig:allobj_reconstructed}{{b}{13}{Reconstructed output from the older phase-depth FFT pipeline}{figure.caption.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Preliminary reconstruction of a multi-object VTP scene using the older hologram-like phase-depth FFT pipeline.}}{13}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:old_pipeline_simple_objects}{{1}{13}{Preliminary reconstruction of a multi-object VTP scene using the older hologram-like phase-depth FFT pipeline}{figure.caption.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Full Matrix Roundtrip Reconstruction Experiment}{13}{subsection.8.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Average reconstruction results for the full matrix roundtrip experiment.}}{14}{table.caption.3}\protected@file@percent }
+\newlabel{tab:full_matrix_roundtrip_average}{{2}{14}{Average reconstruction results for the full matrix roundtrip experiment}{table.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Layer-by-layer reconstruction results from the decoded CSV similarity report.}}{15}{table.caption.4}\protected@file@percent }
+\newlabel{tab:full_matrix_roundtrip_details}{{3}{15}{Layer-by-layer reconstruction results from the decoded CSV similarity report}{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Cube Reconstruction Using the Confidence-Volume Decoder}{15}{subsection.8.3}\protected@file@percent }
+\newlabel{fig:cube_original_confidence}{{2a}{16}{Original cube object}{figure.caption.5}{}}
+\newlabel{sub@fig:cube_original_confidence}{{a}{16}{Original cube object}{figure.caption.5}{}}
+\newlabel{fig:cube_reconstructed_confidence}{{2b}{16}{Reconstructed cube using the confidence-volume decoder}{figure.caption.5}{}}
+\newlabel{sub@fig:cube_reconstructed_confidence}{{b}{16}{Reconstructed cube using the confidence-volume decoder}{figure.caption.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Cube reconstruction using the newer Gabor-style confidence-volume decoder.}}{16}{figure.caption.5}\protected@file@percent }
+\newlabel{fig:cube_confidence_reconstruction}{{2}{16}{Cube reconstruction using the newer Gabor-style confidence-volume decoder}{figure.caption.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Strict reconstruction metrics for the cube confidence-volume experiment.}}{16}{table.caption.6}\protected@file@percent }
+\newlabel{tab:cube_confidence_metrics}{{4}{16}{Strict reconstruction metrics for the cube confidence-volume experiment}{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Future Work}{17}{section.9}\protected@file@percent }
+\bibcite{gabor1948}{1}
+\bibcite{goodman2005}{2}
+\bibcite{jpegpleno2024}{3}
+\bibcite{vaswani2017}{4}
+\bibcite{devlin2019}{5}
+\bibcite{ronneberger2015}{6}
+\bibcite{sanh2019}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {10}References}{18}{section.10}\protected@file@percent }
+\bibcite{frantar2022gptq}{8}
+\bibcite{xiao2023smoothquant}{9}
+\bibcite{frantar2023sparsegpt}{10}
+\bibcite{python2009}{11}
+\bibcite{numpy2020}{12}
+\bibcite{scipy2020}{13}
+\bibcite{pandas2010}{14}
+\bibcite{matplotlib2007}{15}
+\bibcite{vtk2006}{16}
+\bibcite{pillow}{17}
+\gdef \@abspage@last{19}
